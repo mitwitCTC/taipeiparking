@@ -1,0 +1,14 @@
+{
+    "components": {
+        "header": {
+            "intro": "公會簡介",
+            "announcements": "公告資訊",
+            "inquiry": "資料查詢",
+            "joinUs": "加入公會",
+            "promotions": "優惠推薦",
+            "contactUs": "聯絡我們",
+            "login": "會員登入",
+            "logout": "會員登出"
+        }
+    }
+}
