@@ -1,6 +1,13 @@
 <script>
+import TheHeader from "@/components/TheHeader.vue";
+
+export default {
+  components: {
+    TheHeader,
+  },
+};
 </script>
 
 <template>
-  <h1>首頁</h1>
+  <TheHeader />
 </template>
