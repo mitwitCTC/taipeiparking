@@ -10,5 +10,10 @@
             "login": "會員登入",
             "logout": "會員登出"
         }
+    },
+    "pages": {
+        "index": {
+            "industry promotion":"產業優惠訊息"
+        }
     }
 }
