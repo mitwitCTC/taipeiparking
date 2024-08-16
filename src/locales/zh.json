@@ -13,7 +13,8 @@
     },
     "pages": {
         "index": {
-            "industry promotion":"產業優惠訊息"
+            "industry promotion":"產業優惠訊息",
+            "announcements": "公告資訊"
         }
     }
 }
