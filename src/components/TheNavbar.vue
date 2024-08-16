@@ -35,10 +35,10 @@ export default defineComponent({
     generateNavData() {
       const router = useRouter();
       // 取得所有的 routes 作為 navItems
+      const excludedNames = ["home", "faq", "privacy"];
       this.navItems = router.options.routes.filter(
-        (item) => item.name != "home"
+        (item) => !excludedNames.includes(item.name)
       );
-      console.log(this.navItems);
     },
   },
   mounted() {
