@@ -494,6 +494,10 @@ $spacers: (
   14: $spacer * 3.5,   // 56
   15: $spacer * 3.75,  // 60
   16: $spacer * 4,     // 64
+  17: $spacer * 4.25,  // 68
+  18: $spacer * 4.5,   // 72
+  19: $spacer * 4.75,  // 76
+  20: $spacer * 5,     // 80
 ) !default;
 // scss-docs-end spacer-variables-maps
 
@@ -916,8 +920,8 @@ $input-btn-padding-y-sm:      .5rem !default;
 $input-btn-padding-x-sm:      1rem !default;
 $input-btn-font-size-sm:      $font-size-sm !default;
 
-$input-btn-padding-y-lg:      1rem !default;
-$input-btn-padding-x-lg:      2rem !default;
+$input-btn-padding-y-lg:      1.5rem !default;
+$input-btn-padding-x-lg:      2.5rem !default;
 $input-btn-font-size-lg:      $font-size-lg !default;
 
 $input-btn-border-width:      var(--#{$prefix}border-width) !default;
@@ -1603,8 +1607,8 @@ $toast-header-border-color:         $toast-border-color !default;
 $badge-font-size:                   .75em !default;
 $badge-font-weight:                 $font-weight-bold !default;
 $badge-color:                       $white !default;
-$badge-padding-y:                   .35em !default;
-$badge-padding-x:                   .65em !default;
+$badge-padding-y:                   5px !default;
+$badge-padding-x:                   8px !default;
 $badge-border-radius:               var(--#{$prefix}border-radius) !default;
 // scss-docs-end badge-variables
 
