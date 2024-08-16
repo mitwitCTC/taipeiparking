@@ -1,17 +1,18 @@
 <template>
-  <TheNavbar></TheNavbar>
-  <div class="container">
-    <p>{{ $t("components.header.intro") }}</p>
-    <p>建置中...</p>
-  </div>
+  <TheLayout>
+    <div class="container">
+      <p>{{ $t("components.header.intro") }}</p>
+      <p>建置中...</p>
+    </div>
+  </TheLayout>
 </template>
 
 <script>
-import TheNavbar from "@/components/TheNavbar.vue";
+import TheLayout from "@/components/TheLayout.vue";
 
 export default {
   components: {
-    TheNavbar,
+    TheLayout,
   },
 };
 </script>

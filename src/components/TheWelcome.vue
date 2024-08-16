@@ -1,11 +1,11 @@
 <script>
-import TheHeader from "@/components/TheHeader.vue";
+import TheLayout from "@/components/TheLayout.vue";
 import IndustryPromotion from "@/components/index/IndustryPromotion.vue";
 import TheAnnouncements from "@/components/index/TheAnnouncements.vue";
 
 export default {
   components: {
-    TheHeader,
+    TheLayout,
     IndustryPromotion,
     TheAnnouncements,
   },
@@ -13,11 +13,12 @@ export default {
 </script>
 
 <template>
-  <TheHeader />
-  <!-- 產業優惠訊息 -->
-  <IndustryPromotion></IndustryPromotion>
-  <!-- 公告資訊 -->
-  <TheAnnouncements></TheAnnouncements>
+  <TheLayout>
+    <!-- 產業優惠訊息 -->
+    <IndustryPromotion></IndustryPromotion>
+    <!-- 公告資訊 -->
+    <TheAnnouncements></TheAnnouncements>
+  </TheLayout>
 </template>
 <style>
 #app {
