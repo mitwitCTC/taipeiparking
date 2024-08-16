@@ -9,11 +9,18 @@
             "contactUs": "聯絡我們",
             "login": "會員登入",
             "logout": "會員登出"
+        },
+        "footer": {
+            "intro": "公會簡介",
+            "joinUs": "加入我們",
+            "faq": "常見問題",
+            "contactUs": "聯絡我們",
+            "privacy": "隱私權政策"
         }
     },
     "pages": {
         "index": {
-            "industry promotion":"產業優惠訊息",
+            "industry promotion": "產業優惠訊息",
             "announcements": "公告資訊"
         }
     }
