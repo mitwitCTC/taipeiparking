@@ -17,19 +17,46 @@
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
             公會會員停車場
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">90+</p>
+          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+            <vue-count-to
+              class="text-yellow05 fs-xl8 fw-bold text-start"
+              :start-val="0"
+              :end-val="90"
+              :duration="2000"
+              suffix="+"
+            >
+            </vue-count-to>
+          </p>
         </li>
         <li class="pay-item bg-white col-3">
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
             提供路邊及路外停車場
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">3000+</p>
+          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+            <vue-count-to
+              class="text-yellow05 fs-xl8 fw-bold text-start"
+              :start-val="0"
+              :end-val="3000"
+              :duration="5000"
+              suffix="+"
+            >
+            </vue-count-to>
+          </p>
         </li>
         <li class="pay-item bg-white col-3">
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
             多元支付繳款
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">10+</p>
+          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+            <vue-count-to
+              class="text-yellow05 fs-xl8 fw-bold text-start"
+              :start-val="0"
+              :end-val="10"
+              :duration="1000"
+              suffix="+"
+            >
+            </vue-count-to>
+          </p>
         </li>
       </ul>
       <div class="goTopay-btn mt-12">
@@ -102,3 +129,13 @@
   }
 }
 </style>
+
+<script>
+import VueCountTo from "../VueCountTo/vue-countTo.vue";
+
+export default {
+  components: {
+    VueCountTo,
+  },
+};
+</script>
