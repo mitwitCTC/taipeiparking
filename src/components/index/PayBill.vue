@@ -6,7 +6,9 @@
         src="/index/desktopPayment.png"
         alt="desktopPayment"
       />
-      <p class="text-white fs-xl6 fw-bold mb-md-16 mb-10">想繳費？來這裡</p>
+      <p class="text-white fs-xl6 fw-bold mb-md-16 mb-10">
+        {{ $t("pages.index.payBill.title") }}
+      </p>
       <img
         class="bg-mobile"
         src="/index/mobilePayment.png"
@@ -15,7 +17,7 @@
       <ul class="d-flex justify-content-between p-0 pay-list">
         <li class="pay-item bg-white col-3">
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
-            公會會員停車場
+            {{ $t("pages.index.payBill.des1") }}
           </p>
           <p class="text-yellow05 fs-xl8 fw-bold text-start">
             <vue-count-to
@@ -30,7 +32,7 @@
         </li>
         <li class="pay-item bg-white col-3">
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
-            提供路邊及路外停車場
+            {{ $t("pages.index.payBill.des2") }}
           </p>
           <p class="text-yellow05 fs-xl8 fw-bold text-start">
             <vue-count-to
@@ -45,7 +47,7 @@
         </li>
         <li class="pay-item bg-white col-3">
           <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
-            多元支付繳款
+            {{ $t("pages.index.payBill.des3") }}
           </p>
           <p class="text-yellow05 fs-xl8 fw-bold text-start">
             <vue-count-to
@@ -61,7 +63,7 @@
       </ul>
       <div class="goTopay-btn mt-12">
         <button class="btn btn-yellow03 text-navy05 fs-lg-xl fs-md-md fw-bold">
-          前往繳費
+          {{ $t("pages.index.payBill.btn-text") }}
         </button>
       </div>
     </div>

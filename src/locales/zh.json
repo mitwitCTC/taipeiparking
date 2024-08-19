@@ -21,7 +21,14 @@
     "pages": {
         "index": {
             "industry promotion": "產業優惠訊息",
-            "announcements": "公告資訊"
+            "announcements": "公告資訊",
+            "payBill": {
+                "title": "想繳費？來這裡",
+                "des1": "公會會員停車場",
+                "des2": "提供路邊及路外停車場",
+                "des3": "多元支付繳款",
+                "btn-text": "前往繳費"
+            },
         }
     }
 }
