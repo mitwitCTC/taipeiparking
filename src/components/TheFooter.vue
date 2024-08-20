@@ -36,18 +36,11 @@
   </div>
 </template>
 <style scoped>
-.footer {
-  margin-top: 160px;
-}
 .container{
   align-items: center;
 }
 
 @media (max-width: 1199px) {
-  .footer {
-    margin-top: 80px;
-  }
-
   .container {
     /* align-items: start; */
     flex-direction: column; /* 垂直排列 */
