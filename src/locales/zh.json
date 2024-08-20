@@ -33,6 +33,10 @@
                 "btn-text": "前往查看臨停車位"
             },
             "activities": "活動花絮",
+            "member&vendor": {
+                "member": "公會會員",
+                "vendor": "協力廠商"
+            },
         }
     }
 }
