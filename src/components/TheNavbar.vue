@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <!-- LOGO -->
       <router-link to="/">
-        <img src="/logo/sm.png" class="ms-6 pt-5 pb-7" alt="LOGO" />
+        <img src="/logo/sm.svg" class="ms-6 pt-5 pb-7" alt="LOGO" />
       </router-link>
 
       <!-- Login Button (Visible on Mobile) -->
@@ -48,10 +48,10 @@
         <div class="navbar-right d-flex align-items-center ms-auto">
           <!-- Social Icons (Hidden on Mobile) -->
           <a href="#" class="d-none d-lg-block me-2">
-            <img src="/social/btn_sns_FB.png" alt="FB logo" />
+            <img src="/social/btn_sns_FB.svg" alt="FB logo" />
           </a>
           <a href="#" class="d-none d-lg-block me-2">
-            <img src="/social/btn_sns_LINE.png" alt="LINE logo" />
+            <img src="/social/btn_sns_LINE.svg" alt="LINE logo" />
           </a>
 
           <!-- Login Button (Visible on Desktop) -->
