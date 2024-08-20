@@ -1,5 +1,5 @@
 <template>
-  <section id="activities" class="mt-16">
+  <section id="activities" class="mt-16 mb-20">
     <h2 class="text-navy04 fs-xl6 fw-bold text-center mb-10">
       {{ $t("pages.index.activities") }}
     </h2>
