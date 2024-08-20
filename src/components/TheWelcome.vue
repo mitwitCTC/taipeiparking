@@ -4,6 +4,7 @@ import IndustryPromotion from "@/components/index/IndustryPromotion.vue";
 import TheAnnouncements from "@/components/index/TheAnnouncements.vue";
 import PayBill from "@/components/index/PayBill.vue";
 import TheTemporary from "@/components/index/TheTemporary.vue";
+import TheActivities from "@/components/index/TheActivities.vue";
 
 export default {
   components: {
@@ -12,6 +13,7 @@ export default {
     TheAnnouncements,
     PayBill,
     TheTemporary,
+    TheActivities,
   },
 };
 </script>
@@ -26,6 +28,8 @@ export default {
     <PayBill></PayBill>
     <!-- 臨停 -->
     <TheTemporary></TheTemporary>
+    <!-- 活動花絮 -->
+    <TheActivities></TheActivities>
   </TheLayout>
 </template>
 <style>

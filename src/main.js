@@ -8,6 +8,7 @@ import axios from 'axios'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import { createI18n } from 'vue-i18n'
 import zh from '@/locales/zh.json'
+import Vue3Marquee from 'vue3-marquee'
 
 import App from './App.vue'
 import router from './router'
@@ -26,5 +27,6 @@ app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
 app.use(i18n)
+app.use(Vue3Marquee)
 
 app.mount('#app')
