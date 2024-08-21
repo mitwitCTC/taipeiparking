@@ -25,7 +25,7 @@
 }
 .bannerText {
   padding-top: 176px;
-  padding-bottom: 102px;
+  padding-bottom: 102px !important;
   height: 100%;
   display: flex;
   flex-direction: column;
