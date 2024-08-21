@@ -13,10 +13,10 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .banner {
   width: 100%;
-  background-image: url("/public/download_bg.png");
+  background-image: url("/download_bg.png");
   background-repeat: no-repeat;
   background-size: 100% 576px;
   background-blend-mode: multiply;
@@ -44,7 +44,7 @@
     font-size: 16px;
   }
   .banner {
-  background-image: url("/public/download_sm_bg.jpg");
+  background-image: url("/download_sm_bg.jpg");
 }
 }
 </style>
