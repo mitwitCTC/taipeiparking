@@ -71,7 +71,7 @@
 
 @media (max-width: 800px) {
   .join-us {
-    padding-top: 24px;
+    padding-top: 124px;
     padding-bottom: 124px;
   }
   .container {
