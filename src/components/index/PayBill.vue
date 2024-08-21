@@ -97,6 +97,7 @@
   white-space: nowrap; /* 防止 ul 在縮放時換行 */
   padding: 0; /* 移除內邊距 */
   margin: 0; /* 移除外邊距 */
+  margin-right: 200px;
 }
 
 .pay-item {
@@ -121,6 +122,12 @@
   scrollbar-width: none;
 }
 
+@media (max-width: 1400px) {
+  .pay-list {
+    margin-right: 180px;
+  }
+}
+
 @media (max-width: 800px) {
   .bg-desktop {
     display: none;
@@ -128,6 +135,9 @@
   .bg-mobile {
     display: block;
     margin: 0 auto;
+  }
+  .pay-list {
+    margin-right: 0;
   }
 }
 </style>
