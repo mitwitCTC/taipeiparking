@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .banner {
   width: 100%;
   background: url("/img_bg.png");

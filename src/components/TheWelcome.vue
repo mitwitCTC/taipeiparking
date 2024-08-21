@@ -1,5 +1,6 @@
 <script>
 import TheLayout from "@/components/TheLayout.vue";
+import TheBanner from "@/components/TheBanner.vue"
 import IndustryPromotion from "@/components/index/IndustryPromotion.vue";
 import TheAnnouncements from "@/components/index/TheAnnouncements.vue";
 import PayBill from "@/components/index/PayBill.vue";
@@ -11,6 +12,7 @@ import TheDownload from "@/components/index/TheDownload.vue"
 export default {
   components: {
     TheLayout,
+    TheBanner,
     IndustryPromotion,
     TheAnnouncements,
     PayBill,
@@ -23,6 +25,7 @@ export default {
 </script>
 
 <template>
+  <TheBanner></TheBanner>
   <TheLayout>
     <!-- 產業優惠訊息 -->
     <IndustryPromotion></IndustryPromotion>
