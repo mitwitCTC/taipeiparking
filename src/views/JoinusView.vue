@@ -56,7 +56,7 @@
 
 <style scoped>
 .join-us {
-  padding-top: 24px;
+  padding-top: 124px;
   padding-bottom: 117px;
 }
 
