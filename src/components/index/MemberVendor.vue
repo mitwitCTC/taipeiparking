@@ -47,22 +47,22 @@
           class="row row-cols-lg-3 row-cols-md-3 row-cols-2 gap-3 gap-md-6 justify-content-center"
         >
           <li class="member-container">
-            <img src="/public/index/members/1.svg" alt="member-logo" />
+            <img src="/index/members/1.svg" alt="member-logo" />
           </li>
           <li class="member-container">
-            <img src="/public/index/members/2.svg" alt="member-logo" />
+            <img src="/index/members/2.svg" alt="member-logo" />
           </li>
           <li class="member-container">
-            <img src="/public/index/members/3.svg" alt="member-logo" />
+            <img src="/index/members/3.svg" alt="member-logo" />
           </li>
           <li class="member-container">
-            <img src="/public/index/members/4.svg" alt="member-logo" />
+            <img src="/index/members/4.svg" alt="member-logo" />
           </li>
           <li class="member-container">
-            <img src="/public/index/members/5.svg" alt="member-logo" />
+            <img src="/index/members/5.svg" alt="member-logo" />
           </li>
           <li class="member-container">
-            <img src="/public/index/members/6.svg" alt="member-logo" />
+            <img src="/index/members/6.svg" alt="member-logo" />
           </li>
         </ul>
       </div>
