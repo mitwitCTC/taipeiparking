@@ -116,8 +116,7 @@
 </template>
 <style scoped>
 .object-fit-container {
-  width: 100%;
-  max-width: 392px;
+  width: 392px;
   height: 264px;
   img {
     object-fit: cover;
