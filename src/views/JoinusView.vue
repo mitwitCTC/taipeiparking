@@ -51,6 +51,7 @@
         </div>
       </div>
     </section>
+    <TheDownload></TheDownload>
   </TheLayout>
 </template>
 
@@ -83,10 +84,11 @@
 
 <script>
 import TheLayout from "@/components/TheLayout.vue";
-
+import TheDownload from "@/components/index/TheDownload.vue";
 export default {
   components: {
     TheLayout,
+    TheDownload
   },
 };
 </script>
