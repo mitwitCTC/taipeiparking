@@ -35,7 +35,17 @@
             本會改制迄今，現有會員117家，會員代表195人，理、監事十四位，每年定期召開會員大會，理、監事會議每三個月各召開一次，臨時會議視必要時隨時召開之。改制後的公會，由於業務特性迥異，在會務推動上更趨複雜與繁重，唯有遠見的領導團隊，方能將本會帶進更完善的境界，本會自第二十屆理、監事改選後陣容堅強並由周明德出任理事長，周理事長積極參與政府機關法規修訂，提供政府機關政策性建言，為會員解決困擾，以及與爭取福利均不遺餘力，期盼未來公會能站在公益的角色，引導政府將過去扮演「領導者」和「管理者」的角色轉變為民間所期待的「支援者」和「服務者」的角色，那將是本會會員的福氣，也是全民的期待。
           </p>
         </section>
+        <section id="chairman" class="mb-9 mb-md-20">
+          <div
+            class="chairman bg-yellow01 d-flex flex-column align-items-center pt-md-16 pt-8"
+          >
+            <div class="charman-img mb-4">
+              <img src="/intro/chairman.jpg" alt="chairman" />
+            </div>
+            <p class="text-navy03 fs-xl mb-2 mb-md-4">現任理事長</p>
+            <p class="text-navy05 fs-xl5 fw-bold">周理事長明德先生</p>
           </div>
+        </section>
       </div>
       <TheDownload></TheDownload>
     </section>
@@ -75,6 +85,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.chairman {
+  border-radius: 20px;
+}
+
+.charman-img {
+  width: 64px;
+  height: 64px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 99px;
+  }
 }
 
 @media (max-width: 800px) {
