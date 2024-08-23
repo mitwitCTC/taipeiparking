@@ -46,6 +46,42 @@
             <p class="text-navy05 fs-xl5 fw-bold">周理事長明德先生</p>
           </div>
         </section>
+        <section id="previous-chairman" class="mb-10 mb-md-20">
+          <p class="text-navy03 fs-md-xl3 fs-xl2 fw-bold mb-4">歷屆理事長</p>
+          <div class="row">
+            <div class="col-md-12 col-lg-3 mb-4 mb-lg-0">
+              <ul class="pre-chairman list-unstyled">
+                <li>
+                  <p class="d-flex gap-3 gap-md-8 text-navy03 fs-md mb-2">
+                    <span class="fw-bold">20屆理事長</span>
+                    <span>周理事長 明德</span>
+                  </p>
+                </li>
+                <li>
+                  <p class="d-flex gap-3 gap-md-8 text-navy03 fs-md mb-2">
+                    <span class="fw-bold">21屆理事長</span>
+                    <span>周理事長 明德</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+              <div
+                class="pre-chairman-content text-navy03 pt-4 pt-lg-0 ps-lg-4"
+              >
+                <p class="mb-3">
+                  公會在各位理監事們及會務人員盡心盡力共同努力，逐步完成階段性的工作目標，在法規研究、法益維護、會務推廣、會員服務、公共關係及文康活動，安排專業人士演講，拓展大家在各領域上的認識，也提供大家交換事業經營經驗分享的機會。
+                </p>
+                <p class="mb-3">
+                  為業界爭取並解決經營上所遭遇之問題。並參與政府立法、修法，爭取有利於民間投資興建停車場之獎勵條件，增加會務活動資訊佈達，公會亦向相關單位積極爭取停車場管理員工時的問題及修改停車場法，將過去停車費未繳的罰款條文再修改回復。
+                </p>
+                <p class="mb-0">
+                  新選出的理監事團隊，將繼續共同努力，迎接挑戰、爭取福利，讓公會更加茁壯，以更優質的服務，繼續為各位會員效力，拓展停車場業的成長。最後祝福與會的貴賓及會員平安喜樂，一切順心，財源滾滾。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
       <TheDownload></TheDownload>
     </section>
@@ -102,7 +138,11 @@
   }
 }
 
-@media (max-width: 800px) {
+.pre-chairman-content {
+  border-left: 1px solid #d7d7d7;
+}
+
+@media (max-width: 992px) {
   .banner {
     background-size: 100% 480px;
   }
@@ -110,6 +150,11 @@
   .img-container {
     width: 343px;
     height: 212px;
+  }
+
+  .pre-chairman-content {
+    border-left: none;
+    border-top: 1px solid #d7d7d7;
   }
 }
 </style>
