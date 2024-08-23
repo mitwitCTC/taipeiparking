@@ -82,6 +82,87 @@
             </div>
           </div>
         </section>
+        <section id="current-boards" class="mb-10 mb-md-20">
+          <p class="text-navy03 fs-md-xl3 fs-xl2 fw-bold mb-4">
+            現任理監事名單
+          </p>
+          <div class="current text-white fw-bold bg-navy03 py-6 ps-6">
+            第21屆
+          </div>
+          <ul class="current-boards-list bg-blue01 p-6 mt-4 text-navy03">
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">理事長</span>
+                <span class="col-6">周理事長 明德</span>
+              </p>
+            </li>
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">常務監事</span>
+                <span class="col-6">
+                  <ul>
+                    <li>謝常務監事 永松</li>
+                    <li>黃監事 鵬峯</li>
+                    <li>呂監事 秉儒</li>
+                  </ul>
+                </span>
+              </p>
+            </li>
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">常務理事</span>
+                <span class="col-6">
+                  <ul>
+                    <li>范常務理事 昌明</li>
+                    <li>賴常務理事 柏勳</li>
+                  </ul>
+                </span>
+              </p>
+            </li>
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">理事</span>
+                <span class="col-6">
+                  <ul>
+                    <li>陳理事 君瑋</li>
+                    <li>莊理事 景順</li>
+                    <li>連理事 維全</li>
+                    <li>黃理事 庸孜</li>
+                    <li>古理事 昌灝</li>
+                    <li>楊理事 俊傑</li>
+                    <li>王理事 宥勻</li>
+                  </ul>
+                </span>
+              </p>
+            </li>
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">候補理監事</span>
+                <span class="col-6">
+                  <ul>
+                    <li>林治宏(理事)</li>
+                    <li>賀亦璿(理事)</li>
+                    <li>周佳穎(理事)</li>
+                    <li>吳思寬(監事)</li>
+                  </ul>
+                </span>
+              </p>
+            </li>
+            <li>
+              <p class="row">
+                <span class="fw-bold col-3 col-md-2">會務工作人員</span>
+                <span class="col-6">
+                  <ul>
+                    <li>陳理事 君瑋</li>
+                    <li>莊理事 景順</li>
+                    <li>連理事 維全</li>
+                    <li>黃理事 庸孜</li>
+                  </ul>
+                </span>
+              </p>
+            </li>
+          </ul>
+        </section>
       </div>
       <TheDownload></TheDownload>
     </section>
@@ -140,6 +221,11 @@
 
 .pre-chairman-content {
   border-left: 1px solid #d7d7d7;
+}
+
+.current,
+.current-boards-list {
+  border-radius: 12px;
 }
 
 @media (max-width: 992px) {
