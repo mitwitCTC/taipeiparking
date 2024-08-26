@@ -133,6 +133,13 @@
             </div>
           </li>
         </ul>
+        <div class="text-center mt-12">
+          <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
+            <router-link to="/vendor">
+              {{ $t("pages.index.member&vendor.vendor_btn") }}
+            </router-link>
+          </button>
+        </div>
       </div>
     </div>
   </section>

@@ -36,7 +36,8 @@
             "member&vendor": {
                 "member": "公會會員",
                 "vendor": "協力廠商",
-                "member_btn": "查看所有會員"
+                "member_btn": "查看所有會員",
+                "vendor_btn": "查看所有協力廠商"
             },
             "download": {
                 "title": "停車產業各項適用法律與規範",
@@ -67,6 +68,9 @@
         },
         "member": {
             "title": "公會會員"
+        },
+        "vendor": {
+            "title": "協力廠商"
         }
     }
 }
