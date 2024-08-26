@@ -71,6 +71,9 @@
         },
         "vendor": {
             "title": "協力廠商"
+        },
+        "activities": {
+            "title": "活動花絮"
         }
     }
 }

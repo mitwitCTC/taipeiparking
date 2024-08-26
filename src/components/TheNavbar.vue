@@ -80,7 +80,7 @@ export default defineComponent({
     generateNavData() {
       const router = useRouter();
       // 取得所有的 routes 作為 navItems
-      const excludedNames = ["home", "faq", "privacy", "member", "vendor"];
+      const excludedNames = ["home", "faq", "privacy", "member", "vendor", "activities"];
       this.navItems = router.options.routes.filter(
         (item) => !excludedNames.includes(item.name)
       );
