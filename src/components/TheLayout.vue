@@ -1,7 +1,7 @@
 <!-- Layout.vue -->
 <template>
   <div>
-    <TheHeader />
+    <TheHeader ref="headerRef"/>
     <main>
       <slot></slot>
     </main>

@@ -584,11 +584,11 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1320px
+  sm: 90vw,
+  md: 90vw,
+  lg: 90vw,
+  xl: 90vw,
+  xxl: 90vw
 ) !default;
 // scss-docs-end container-max-widths
 
