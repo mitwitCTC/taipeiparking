@@ -1,13 +1,5 @@
 <template>
   <section id="memberVendor" class="container mt-16">
-    <!-- <ul class="d-flex justify-content-center gap-11">
-      <li class="text-navy-04 fs-xl4 fw-bold" @click="toggleTab(member)">
-        {{ $t("pages.index.member&vendor.member") }}
-      </li>
-      <li class="text-navy-04 fs-xl4 fw-bold" @click="toggleTab(vendor)">
-        {{ $t("pages.index.member&vendor.vendor") }}
-      </li>
-    </ul> -->
     <nav class="d-flex justify-content-center">
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button
@@ -65,6 +57,11 @@
             <img src="/index/members/6.svg" alt="member-logo" />
           </li>
         </ul>
+        <div class="text-center mt-12">
+          <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
+            <router-link to="/member">{{ $t("pages.index.member&vendor.member_btn") }}</router-link>
+          </button>
+        </div>
       </div>
       <div
         class="tab-pane fade"

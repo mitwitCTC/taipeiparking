@@ -9,6 +9,7 @@ import PromotionsView from '../views/PromotionsView.vue'
 import ContactUsView from '../views/ContactUsView.vue'
 import FaqView from '../views/FaqView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
+import MemmberView from '@/views/MemberView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,6 +67,12 @@ const router = createRouter({
       name: 'privacy',
       component: PrivacyView,
       meta: { title: zh.components.footer.privacy || 'privacy' }
+    },
+    {
+      path: '/member',
+      name: 'member',
+      component: MemmberView,
+      meta: { title: zh.pages.member.title || 'member' }
     },
   ]
 })
