@@ -8,6 +8,7 @@ import TheTemporary from "@/components/index/TheTemporary.vue";
 import TheActivities from "@/components/index/TheActivities.vue";
 import MemberVendor from "@/components/index/MemberVendor.vue";
 import TheDownload from "@/components/index/TheDownload.vue"
+import TheMonthly from "@/components/index/TheMonthly.vue";
 
 export default {
   components: {
@@ -20,6 +21,7 @@ export default {
     TheActivities,
     MemberVendor,
     TheDownload,
+    TheMonthly,
   },
 };
 </script>
@@ -31,6 +33,8 @@ export default {
     <IndustryPromotion></IndustryPromotion>
     <!-- 公告資訊 -->
     <TheAnnouncements></TheAnnouncements>
+    <!-- 月租 -->
+     <TheMonthly></TheMonthly>
     <!-- 繳費 -->
     <PayBill></PayBill>
     <!-- 臨停 -->
