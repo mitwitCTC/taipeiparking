@@ -12,6 +12,7 @@ import PrivacyView from '../views/PrivacyView.vue'
 import MemmberView from '@/views/MemberView.vue'
 import VendorView from '@/views/VendorView.vue'
 import ActivitiesView from '@/views/ActivitiesView.vue'
+import PayView from '@/views/PayView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -87,6 +88,12 @@ const router = createRouter({
       name: 'activities',
       component: ActivitiesView,
       meta: { title: zh.pages.activities.title || 'activities' }
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: PayView,
+      meta: { title: zh.pages.payment.title || 'payment' }
     },
   ]
 })

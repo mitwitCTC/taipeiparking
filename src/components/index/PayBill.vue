@@ -62,9 +62,11 @@
         </li>
       </ul>
       <div class="goTopay-btn mt-12">
-        <button class="btn btn-yellow03 text-navy05 fs-lg-xl fs-md-md fw-bold">
+        <router-link to="payment">
+          <button class="btn btn-yellow03 text-navy05 fs-lg-xl fs-md-md fw-bold">
           {{ $t("pages.index.payBill.btn-text") }}
         </button>
+        </router-link>
       </div>
     </div>
   </div>
