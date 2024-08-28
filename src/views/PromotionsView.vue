@@ -7,9 +7,9 @@
         </p>
       </div>
       <div class="container d-flex mt-8 mt-md-10">
-        <ul class="row justify-content-around gap-1">
+        <ul class="row justify-content-between gap-1">
           <li
-            v-for="(item, i) in promotions"
+            v-for="(item, i) in paginatedPromotions"
             :key="i"
             class="col-12 col-md-5 mb-6"
           >
@@ -27,6 +27,11 @@
           </li>
         </ul>
       </div>
+      <ThePagination
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        @page-changed="handlePageChange"
+      />
     </section>
   </TheLayout>
 </template>
@@ -63,16 +68,30 @@
 
 <script>
 import TheLayout from "@/components/TheLayout.vue";
+import ThePagination from "@/components/ThePagination.vue"
 
 export default {
   data() {
     return {
       activeTabIndex: 0, // Track the active tab index
       promotions: [],
+      currentPage: 1,
+      itemsPerPage: 10,
     };
   },
   components: {
     TheLayout,
+    ThePagination,
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.promotions.length / this.itemsPerPage);
+    },
+    paginatedPromotions() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.promotions.slice(start, end);
+    },
   },
   mounted() {
     this.adjustPaddingTop();
@@ -155,6 +174,9 @@ export default {
           link_url: "https://www.cardu.com.tw/mpay/detail.php?35760",
         },
       ];
+    },
+    handlePageChange(page) {
+      this.currentPage = page;
     },
   },
 };
