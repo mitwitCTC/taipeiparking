@@ -36,19 +36,56 @@
           role="tabpanel"
           :aria-labelledby="'nav-' + index + '-tab'"
         >
-          <!-- Render payment data -->
-          <div v-if="paymentData.length > 0">
+          <div v-if="paymentType == '停車場（路外）'">
             <ul class="row">
-              <li class="col-12 col-md-6 mb-6" v-for="(item, itemIndex) in paymentData" :key="itemIndex">
-                <div class="payment-item d-flex align-items-center justify-content-between">
+              <li
+                class="col-12 col-md-6 mb-6"
+                v-for="(item, itemIndex) in paymentData"
+                :key="itemIndex"
+              >
+                <div
+                  class="payment-item d-flex align-items-center justify-content-between"
+                >
                   <div class="d-flex align-items-center">
-                    <img class="me-6" :src="item.preview_url" alt="payment_logo">
+                    <img
+                      class="me-6"
+                      :src="item.preview_url"
+                      alt="payment_logo"
+                    />
                     <p class="mt-5">{{ item.name }}</p>
                   </div>
                   <i class="bi bi-box-arrow-up-right"></i>
                 </div>
               </li>
             </ul>
+          </div>
+          <div v-else-if="paymentType === '縣市政府路邊'">
+            <div v-for="(area, areaIndex) in paymentData" :key="areaIndex">
+              <h3 class="text-navy03 fs-xl3 fw-bold mt-4 mb-2">
+                {{ area.area }}
+              </h3>
+              <ul class="row gap-2">
+                <li
+                  class="region bg-white col-12 col-md-4"
+                  v-for="(region, regionIndex) in area.regions"
+                  :key="regionIndex"
+                >
+                  <div
+                    class="py-6 d-flex align-items-center justify-content-between"
+                  >
+                    <p
+                      class="text-navy03 ps-20 fs-xl fw-bold text-center"
+                      :class="`border-start border-3 border-${region.color}`"
+                    >
+                      {{ region.region }}
+                    </p>
+                    <div class="text-end">
+                      <i class="bi bi-box-arrow-up-right text-navy02 fs-xl"></i>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
           <p v-else>{{ payment.type }} 繳費連結建置中...</p>
         </div>
@@ -95,12 +132,17 @@ nav {
   padding: 1rem; /* Optional padding for each tab pane */
 }
 
-.payment-item{
+.payment-item {
   max-width: 600px;
   border: 1px solid #E6E6E6;
   background: #FFFFFF;
   border-radius: 6px;
   padding: 0 24px;
+}
+
+.region {
+  max-width: 392px;
+  border: 1px solid#E6E6E6;
 }
 </style>
 
@@ -110,8 +152,9 @@ import TheLayout from "@/components/TheLayout.vue";
 export default {
   data() {
     return {
-      paymentTypes: [],
+      paymentTypes: null,
       activeTabIndex: 0, // Track the active tab index
+      paymentType: "",
       paymentData: [],
     };
   },
@@ -146,6 +189,7 @@ export default {
     fetchPaymentData(type, index) {
       this.activeTabIndex = index; // Set the active tab index
       if (type == "停車場（路外）") {
+        this.paymentType = "停車場（路外）";
         this.paymentData = [
           {
             name: "應安 168 停車",
@@ -193,8 +237,56 @@ export default {
             link_url: "",
           },
         ];
-      } else {
-        this.paymentData = [];
+      } else if (type == "縣市政府路邊") {
+        this.paymentType = "縣市政府路邊";
+        this.paymentData = this.paymentData = [
+          {
+            area: "北部區域",
+            regions: [
+              { color: "navy03", region: "台北市" },
+              { color: "yellow05", region: "新北市" },
+              { color: "green02", region: "基隆市" },
+              { color: "red01", region: "桃園市" },
+              { color: "navy03", region: "新竹縣" },
+              { color: "yellow05", region: "新竹市" },
+              { color: "green02", region: "宜蘭縣" },
+            ],
+          },
+          {
+            area: "中部區域",
+            regions: [
+              { color: "red01", region: "台中市" },
+              { color: "navy03", region: "苗栗縣" },
+              { color: "yellow05", region: "彰化縣" },
+              { color: "green02", region: "雲林縣" },
+              { color: "red01", region: "南投縣" },
+            ],
+          },
+          {
+            area: "南部區域",
+            regions: [
+              { color: "navy03", region: "高雄市" },
+              { color: "yellow05", region: "台南市" },
+              { color: "green02", region: "嘉義市" },
+              { color: "red01", region: "屏東縣" },
+              { color: "navy03", region: "澎湖縣" },
+            ],
+          },
+          {
+            area: "東部區域",
+            regions: [
+              { color: "yellow05", region: "花蓮縣" },
+              { color: "green02", region: "台東縣" },
+            ],
+          },
+          {
+            area: "外島區域",
+            regions: [
+              { color: "red01", region: "金門縣" },
+              { color: "navy03", region: "連江縣" },
+            ],
+          },
+        ];
       }
     },
   },
