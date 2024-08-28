@@ -82,6 +82,9 @@
         },
         "payment": {
             "title": "線上繳費"
+        },
+        "promotion": {
+            "title": "優惠推薦"
         }
     }
 }
