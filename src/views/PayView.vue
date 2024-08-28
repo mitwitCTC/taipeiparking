@@ -239,7 +239,7 @@ export default {
         ];
       } else if (type == "縣市政府路邊") {
         this.paymentType = "縣市政府路邊";
-        this.paymentData = this.paymentData = [
+        this.paymentData = [
           {
             area: "北部區域",
             regions: [
