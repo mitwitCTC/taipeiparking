@@ -2,11 +2,15 @@
   <TheLayout ref="layoutRef">
     <section id="vendor" class="vendor">
       <div class="bg-yellow03 py-md-12 py-6 tab-bg">
-        <p class="container text-navy05 fs-xl5 fw-bold">
+        <p class="container text-navy05 fs-xl5 fw-bold mb-4 mb-md-0">
           {{ $t("pages.vendor.title") }}
         </p>
-        <nav class="d-flex container-fluid">
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <nav class="container overflow-x-auto">
+          <div
+            class="nav nav-tabs d-flex flex-nowrap"
+            id="nav-tab"
+            role="tablist"
+          >
             <button
               v-for="(vendor, index) in vendorTypes"
               :key="index"
@@ -71,10 +75,21 @@
 .tab-bg {
   position: relative;
 }
+
 nav {
   position: absolute;
   bottom: 0;
   left: 10vw;
+  width: 80%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+nav::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .nav-tabs,
