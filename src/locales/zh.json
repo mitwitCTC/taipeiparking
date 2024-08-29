@@ -85,6 +85,9 @@
         },
         "promotion": {
             "title": "優惠推薦"
+        },
+        "announcements": {
+            "title": "公告資訊"
         }
     }
 }
