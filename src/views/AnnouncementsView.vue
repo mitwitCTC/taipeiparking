@@ -5,7 +5,7 @@
         <p class="container text-navy05 fs-xl5 fw-bold mb-4 mb-md-0">
           {{ $t("pages.announcements.title") }}
         </p>
-        <nav class="container overflow-x-auto">
+        <nav class="nav-container container overflow-x-auto">
           <div
             class="nav nav-tabs d-flex flex-nowrap"
             id="nav-tab"
@@ -42,7 +42,7 @@
         >
           <ul>
             <li
-              v-for="(item, index) in announcementsData"
+              v-for="(item, index) in paginatedAnnouncements"
               :key="index"
               class="announcement pt-10 pb-8 border-bottom"
             >
@@ -57,15 +57,13 @@
               </div>
             </li>
           </ul>
-          <!-- <div class="row">
-            <div
-              v-for="(item, index) in announcementsData"
-              :key="index"
-              class=""
-            >
-              {{ item }}
-            </div>
-          </div> -->
+        </div>
+        <div class="text-center">
+          <ThePagination
+            :current-page="currentPage"
+            :total-pages="totalPages"
+            @page-changed="handlePageChange"
+          />
         </div>
       </div>
     </section>
@@ -81,7 +79,7 @@
   position: relative;
 }
 
-nav {
+.nav-container {
   position: absolute;
   bottom: 0;
   left: 10vw;
@@ -93,7 +91,7 @@ nav {
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
-nav::-webkit-scrollbar {
+.nav-container::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
 
@@ -119,6 +117,7 @@ nav::-webkit-scrollbar {
 
 <script>
 import TheLayout from "@/components/TheLayout.vue";
+import ThePagination from "@/components/ThePagination.vue";
 
 export default {
   data() {
@@ -127,10 +126,23 @@ export default {
       activeTabIndex: 0, // Track the active tab index
       announcementsType: "",
       announcementsData: [],
+      currentPage: 1,
+      itemsPerPage: 10,
     };
   },
   components: {
     TheLayout,
+    ThePagination,
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.announcementsData.length / this.itemsPerPage);
+    },
+    paginatedAnnouncements() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.announcementsData.slice(start, end);
+    },
   },
   mounted() {
     this.adjustPaddingTop();
@@ -373,6 +385,10 @@ export default {
         default:
           return "";
       }
+    },
+    handlePageChange(page) {
+      this.currentPage = page;
+      console.log(this.currentPage);
     },
   },
 };
