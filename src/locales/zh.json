@@ -94,6 +94,15 @@
         },
         "privacy": {
             "title": "使用者條款與隱私權政策"
+        },
+        "download": {
+            "title": "資料查詢",
+            "tabs": {
+                "download": "資料下載",
+                "parkingLotRegulations": "停車場法規",
+                "industryRegulations": "產業法規",
+                "register": "登記相關作業"
+            }
         }
     }
 }
