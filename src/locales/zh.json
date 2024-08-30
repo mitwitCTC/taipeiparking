@@ -88,6 +88,9 @@
         },
         "announcements": {
             "title": "公告資訊"
+        },
+        "faq": {
+            "title": "常見問題"
         }
     }
 }
