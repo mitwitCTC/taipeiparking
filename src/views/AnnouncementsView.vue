@@ -45,6 +45,7 @@
               v-for="(item, index) in paginatedAnnouncements"
               :key="index"
               class="announcement pt-10 pb-8 border-bottom"
+              @click="goDetail(item.type, item.id)"
             >
               <p class="text-navy05 fw-bold fs-xl mb-5">{{ item.date }}</p>
               <div class="d-flex align-items-center gap-4">
@@ -388,7 +389,9 @@ export default {
     },
     handlePageChange(page) {
       this.currentPage = page;
-      console.log(this.currentPage);
+    },
+    goDetail(type, id) {
+      this.$router.push({ name: "announcement-detail", params: { id, type } });
     },
   },
 };

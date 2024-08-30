@@ -13,6 +13,7 @@ import MemmberView from '@/views/MemberView.vue'
 import VendorView from '@/views/VendorView.vue'
 import ActivitiesView from '@/views/ActivitiesView.vue'
 import PayView from '@/views/PayView.vue'
+import AnnouncementsDetailView from '@/views/AnnouncementsDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,12 @@ const router = createRouter({
       name: 'announcements',
       component: AnnouncementsView,
       meta: { title: zh.components.header.announcements || 'announcements' }
+    },
+    {
+      path: '/announcements/:type/:id',
+      name: 'announcement-detail',
+      component: AnnouncementsDetailView,
+      props: true
     },
     {
       path: '/inquiry',
