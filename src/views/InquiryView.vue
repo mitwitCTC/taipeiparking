@@ -15,7 +15,7 @@
               <div class="d-block d-md-none">
                 <select
                   class="form-select nav-dropdown"
-                  @change="handleTabChange"
+                  @change="handleTabChange, getInquiryData(value)"
                   :style="getDropdownStyle()"
                 >
                   <option value="download">
@@ -48,7 +48,7 @@
                   role="tab"
                   aria-controls="v-pills-download"
                   aria-selected="true"
-                  @click="activateTab('download')"
+                  @click="activateTab('download'), getInquiryData('資料下載')"
                 >
                   <img src="/icons/inquiry1.svg" alt="icon" />
                   {{ $t("pages.download.tabs.download") }}
@@ -62,7 +62,7 @@
                   role="tab"
                   aria-controls="v-pills-parkingLotRegulations"
                   aria-selected="false"
-                  @click="activateTab('parkingLotRegulations')"
+                  @click="activateTab('parkingLotRegulations', getInquiryData('停車場法規'))"
                 >
                   <img src="/icons/inquiry2.svg" alt="icon" />
                   {{ $t("pages.download.tabs.parkingLotRegulations") }}
@@ -76,7 +76,7 @@
                   role="tab"
                   aria-controls="v-pills-industryRegulations"
                   aria-selected="false"
-                  @click="activateTab('industryRegulations')"
+                  @click=" activateTab('industryRegulations',getInquiryData('產業法規'))"
                 >
                   <img src="/icons/inquiry3.svg" alt="icon" />
                   {{ $t("pages.download.tabs.industryRegulations") }}
@@ -90,7 +90,7 @@
                   role="tab"
                   aria-controls="v-pills-register"
                   aria-selected="false"
-                  @click="activateTab('register')"
+                  @click="activateTab('register', getInquiryData('登記相關作業'))"
                 >
                   <img src="/icons/inquiry4.svg" alt="icon" />
                   {{ $t("pages.download.tabs.register") }}
@@ -105,7 +105,29 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-download-tab"
               >
-                資料下載
+                <ul>
+                  <li
+                    v-for="(item, index) in inquiryData"
+                    :key="index"
+                    class="inquiry-item bg-yellow01 mb-4 p-4"
+                  >
+                    <a :href="item.url" target="_blank" class="link-container">
+                      <span
+                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                      >
+                        {{ item.type }}
+                      </span>
+                      <span class="text-navy03 fs-md fw-bold">
+                        {{ item.name }}
+                      </span>
+                      <img
+                        class="inquiry-icon"
+                        src="/icons/download.svg"
+                        alt="download"
+                      />
+                    </a>
+                  </li>
+                </ul>
               </div>
               <div
                 class="tab-pane fade"
@@ -113,7 +135,121 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-parkingLotRegulations-tab"
               >
-                停車場法規
+                <!-- 停車場法規 第一章 -->
+                <section class="mb-10">
+                  <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
+                    第一章 總則
+                  </div>
+                  <ul class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第1條</span>
+                        <span class="col-6 col-md-8">
+                          為加強停車場之規劃、設置、經營、管理及獎助，以增進交通流暢，改善交通秩序，特制定本法。本法未規定者，適用其他法律之規定。
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第2條</span>
+                        <span class="col-6 col-md-8">
+                          本法所用名詞定義如左：<br />
+                          <ul class="decimal-ul">
+                            <li>停車場：指依法令設置供車輛停放之場所。</li>
+                            <li>
+                              路邊停車場：指以道路部分路面劃設，供公眾停放車輛之場所。
+                            </li>
+                            <li>
+                              路外停車場：指在道路之路面外，以平面式、立體式、機械式或塔臺式等所設，供停放車輛之場所。
+                            </li>
+                            <li>
+                              都市計畫停車場：指依都市計畫法令所劃設公共停車場用地興闢後，供作公眾停放車輛之場所。
+                            </li>
+                            <li>
+                              建築附設停車空間：指建築物依建築法令規定，應附設專供車輛停放之空間。
+                            </li>
+                            <li>
+                              停車場經營業：指經主管機關發給停車場登記證，經營路外公共停車場之事業。
+                            </li>
+                          </ul>
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第3條</span>
+                        <span class="col-6 col-md-8">
+                          本法所稱主管機關︰在中央為交通部；在直轄市為直轄市政府；在縣(市) 為縣 (市) 政府。
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第4條</span>
+                        <span class="col-6 col-md-8">
+                          地方主管機關為籌措停車場興建、營運資金及獎助民營路外公共停車場，以提升其經營服務水準，得由左列各款籌措專款，依有關規定設置停車場作業基金：
+                          <ul class="decimal-ul">
+                            <li>地方政府之一般財源。</li>
+                            <li>上級政府補助。</li>
+                            <li>汽車燃料使用費部分收入。</li>
+                            <li>交通違規停車罰鍰收入。</li>
+                            <li>路邊及公有路外公共停車場之停車費收入。</li>
+                            <li>違規停車之移置費及保管費收入。</li>
+                            <li>民間機構繳交之權利金及租金收入。</li>
+                            <li>依建築法第一百零二條之一規定，建築物附設停車空間繳納代金收入。</li>
+                            <li>公有停車場經營附屬事業收入。</li>
+                            <li>基金之孳息收入。</li>
+                            <li>其他收入。</li>
+                          </ul>
+                          <span>
+                            前項停車場作業基金，得設置基金管理委員會，辦理其收支保管及運用事項；其收支保管及運用辦法，由地方主管機關定之。
+                          </span>
+                        </span>
+                      </p>
+                    </li>
+                  </ul>
+                </section>
+                <!-- 停車場法規 第二章 -->
+                <section class="mb-10">
+                  <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
+                    第二章 路邊停車場
+                  </div>
+                  <ul class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第12條</span>
+                        <span class="col-6 col-md-8">
+                          地方主管機關為因應停車之需要，得視道路交通狀況，設置路邊停車場，並得向使用者收取停車費。<br />
+                          依前項設置之路邊停車場，應隨路外停車場之增設或道路交通之密集狀況予以檢討廢止或在交通尖峰時段限制停車，以維道路原有之功能。
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第13條</span>
+                        <span class="col-6 col-md-8">
+                          地方主管機關應於路邊停車場開放使用前，將設置地點、停車種類、收費時間、收費方式、費率及其他規定事項公告週知。變更及廢止時，亦同。
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第14條</span>
+                        <span class="col-6 col-md-8">
+                          路邊停車場之費率，應依第三十一條規定定之；其停車費得以計時或計次方式收取，並得視地區交通狀況，採累進方式收費或限制停車時間。
+                        </span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="row">
+                        <span class="fw-bold col-3 col-md-2">第15條</span>
+                        <span class="col-6 col-md-8">
+                          地方主管機關為整頓交通及停車秩序，維護住宅區公共安全，得以標示禁止停車或劃設停車位等方式全面整理卷道。
+                        </span>
+                      </p>
+                    </li>
+                  </ul>
+                </section>
               </div>
               <div
                 class="tab-pane fade"
@@ -121,7 +257,29 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-industryRegulations-tab"
               >
-                產業法規
+                <ul>
+                  <li
+                    v-for="(item, index) in inquiryData"
+                    :key="index"
+                    class="inquiry-item bg-yellow01 mb-4 p-4"
+                  >
+                    <a :href="item.url" target="_blank" class="link-container">
+                      <span
+                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                      >
+                        {{ item.type }}
+                      </span>
+                      <span class="text-navy03 fs-md fw-bold">
+                        {{ item.name }}
+                      </span>
+                      <img
+                        class="inquiry-icon"
+                        src="/icons/download.svg"
+                        alt="download"
+                      />
+                    </a>
+                  </li>
+                </ul>
               </div>
               <div
                 class="tab-pane fade"
@@ -129,7 +287,29 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-register-tab"
               >
-                登記相關作業
+                <ul>
+                  <li
+                    v-for="(item, index) in inquiryData"
+                    :key="index"
+                    class="inquiry-item bg-yellow01 mb-4 p-4"
+                  >
+                    <a :href="item.url" target="_blank" class="link-container">
+                      <span
+                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                      >
+                        {{ item.type }}
+                      </span>
+                      <span class="text-navy03 fs-md fw-bold">
+                        {{ item.name }}
+                      </span>
+                      <img
+                        class="inquiry-icon"
+                        src="/icons/download.svg"
+                        alt="download"
+                      />
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -168,6 +348,46 @@
   padding: 8px;
   background-color: white;
 }
+
+.inquiry-item {
+  border-radius: 12px;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+}
+
+.type-badge {
+  border-radius: 8px;
+}
+
+.inquiry-icon {
+  background: white;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.decimal-ul {
+  list-style: none; /* Remove the default list style */
+  padding: 0; /* Optional: remove default padding */
+  counter-reset: custom-counter; /* Initialize a custom counter */
+}
+
+.decimal-ul li {
+  counter-increment: custom-counter; /* Increment the custom counter */
+  position: relative; /* Set position to relative for positioning pseudo-element */
+  padding-left: 2em; /* Add some space for the counter text */
+}
+
+.decimal-ul li::before {
+  content: counter(custom-counter, cjk-ideographic) "、"; /* Use CJK ideographic numbering */
+  position: absolute; /* Position pseudo-element */
+  left: 0; /* Align to the left */
+}
 </style>
 
 <script>
@@ -177,6 +397,7 @@ export default {
   data() {
     return {
       selectedTab: "download", // default selected tab
+      inquiryData: null,
     };
   },
   components: {
@@ -185,6 +406,7 @@ export default {
   mounted() {
     this.adjustPaddingTop();
     window.addEventListener("resize", this.adjustPaddingTop);
+    this.getInquiryData("資料下載");
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.adjustPaddingTop);
@@ -228,6 +450,86 @@ export default {
             : "white",
         color: "#04172E",
       };
+    },
+    getInquiryData(type) {
+      if (type === "資料下載") {
+        this.inquiryData = [
+          {
+            type: "資料下載",
+            name: "台北市停車公會會員申請書",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "資料下載",
+            name: "台北市停車公會會員復権申請書",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "資料下載",
+            name: "第 38 次公會會議紀錄",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+        ];
+      } else if (type === "停車場法規") {
+        this.inquiryData = [];
+      } else if (type === "產業法規") {
+        this.inquiryData = [
+          {
+            type: "產業法規",
+            name: "修正停車場法第十四條第十七條...得以30分鐘為計費單位",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "產業法規",
+            name: "大眾捷運系統建設及周邊土地開發計畫申請與審查作業要點",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "產業法規",
+            name: "停車場設計問題",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "產業法規",
+            name: "停車場指標設置",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "產業法規",
+            name: "停車格位與禁停標線之劃設原則",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "產業法規",
+            name: "台北市汽車業停車場設置辦法",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+        ];
+      } else if (type === "登記相關作業") {
+        this.inquiryData = [
+          {
+            type: "登記相關作業",
+            name: "台北市停車公會會員申請作業內容須知 （.PDF）",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+          {
+            type: "登記相關作業",
+            name: "停車公會資料申請填表",
+            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
+            date: "2024/08/08 18:11:24",
+          },
+        ];
+      }
     },
   },
 };
