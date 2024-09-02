@@ -138,117 +138,127 @@
                 <!-- 停車場法規 第一章 -->
                 <section class="mb-10">
                   <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
-                    第一章 總則
+                    <span class="d-flex justify-content-between align-items-center px-3" @click="toggleChapter('chapterOne')">
+                      <span>第一章 總則</span>
+                      <img class="bg-white p-2 rounded-circle" :src="chapterOneOpen ? '/icons/triangle.svg' : '/icons/upsidedown_triangle.svg'" alt="toggle-icon">
+                    </span>
                   </div>
-                  <ul class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第1條</span>
-                        <span class="col-6 col-md-8">
-                          為加強停車場之規劃、設置、經營、管理及獎助，以增進交通流暢，改善交通秩序，特制定本法。本法未規定者，適用其他法律之規定。
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第2條</span>
-                        <span class="col-6 col-md-8">
-                          本法所用名詞定義如左：<br />
-                          <ul class="decimal-ul">
-                            <li>停車場：指依法令設置供車輛停放之場所。</li>
-                            <li>
-                              路邊停車場：指以道路部分路面劃設，供公眾停放車輛之場所。
-                            </li>
-                            <li>
-                              路外停車場：指在道路之路面外，以平面式、立體式、機械式或塔臺式等所設，供停放車輛之場所。
-                            </li>
-                            <li>
-                              都市計畫停車場：指依都市計畫法令所劃設公共停車場用地興闢後，供作公眾停放車輛之場所。
-                            </li>
-                            <li>
-                              建築附設停車空間：指建築物依建築法令規定，應附設專供車輛停放之空間。
-                            </li>
-                            <li>
-                              停車場經營業：指經主管機關發給停車場登記證，經營路外公共停車場之事業。
-                            </li>
-                          </ul>
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第3條</span>
-                        <span class="col-6 col-md-8">
-                          本法所稱主管機關︰在中央為交通部；在直轄市為直轄市政府；在縣(市) 為縣 (市) 政府。
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第4條</span>
-                        <span class="col-6 col-md-8">
-                          地方主管機關為籌措停車場興建、營運資金及獎助民營路外公共停車場，以提升其經營服務水準，得由左列各款籌措專款，依有關規定設置停車場作業基金：
-                          <ul class="decimal-ul">
-                            <li>地方政府之一般財源。</li>
-                            <li>上級政府補助。</li>
-                            <li>汽車燃料使用費部分收入。</li>
-                            <li>交通違規停車罰鍰收入。</li>
-                            <li>路邊及公有路外公共停車場之停車費收入。</li>
-                            <li>違規停車之移置費及保管費收入。</li>
-                            <li>民間機構繳交之權利金及租金收入。</li>
-                            <li>依建築法第一百零二條之一規定，建築物附設停車空間繳納代金收入。</li>
-                            <li>公有停車場經營附屬事業收入。</li>
-                            <li>基金之孳息收入。</li>
-                            <li>其他收入。</li>
-                          </ul>
-                          <span>
-                            前項停車場作業基金，得設置基金管理委員會，辦理其收支保管及運用事項；其收支保管及運用辦法，由地方主管機關定之。
+                  <transition name="collapse">
+                    <ul v-if="chapterOneOpen" class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第1條</span>
+                          <span class="col-6 col-md-8">
+                            為加強停車場之規劃、設置、經營、管理及獎助，以增進交通流暢，改善交通秩序，特制定本法。本法未規定者，適用其他法律之規定。
                           </span>
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第2條</span>
+                          <span class="col-6 col-md-8">
+                            本法所用名詞定義如左：<br />
+                            <ul class="decimal-ul">
+                              <li>停車場：指依法令設置供車輛停放之場所。</li>
+                              <li>
+                                路邊停車場：指以道路部分路面劃設，供公眾停放車輛之場所。
+                              </li>
+                              <li>
+                                路外停車場：指在道路之路面外，以平面式、立體式、機械式或塔臺式等所設，供停放車輛之場所。
+                              </li>
+                              <li>
+                                都市計畫停車場：指依都市計畫法令所劃設公共停車場用地興闢後，供作公眾停放車輛之場所。
+                              </li>
+                              <li>
+                                建築附設停車空間：指建築物依建築法令規定，應附設專供車輛停放之空間。
+                              </li>
+                              <li>
+                                停車場經營業：指經主管機關發給停車場登記證，經營路外公共停車場之事業。
+                              </li>
+                            </ul>
+                          </span>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第3條</span>
+                          <span class="col-6 col-md-8">
+                            本法所稱主管機關︰在中央為交通部；在直轄市為直轄市政府；在縣(市) 為縣 (市) 政府。
+                          </span>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第4條</span>
+                          <span class="col-6 col-md-8">
+                            地方主管機關為籌措停車場興建、營運資金及獎助民營路外公共停車場，以提升其經營服務水準，得由左列各款籌措專款，依有關規定設置停車場作業基金：
+                            <ul class="decimal-ul">
+                              <li>地方政府之一般財源。</li>
+                              <li>上級政府補助。</li>
+                              <li>汽車燃料使用費部分收入。</li>
+                              <li>交通違規停車罰鍰收入。</li>
+                              <li>路邊及公有路外公共停車場之停車費收入。</li>
+                              <li>違規停車之移置費及保管費收入。</li>
+                              <li>民間機構繳交之權利金及租金收入。</li>
+                              <li>依建築法第一百零二條之一規定，建築物附設停車空間繳納代金收入。</li>
+                              <li>公有停車場經營附屬事業收入。</li>
+                              <li>基金之孳息收入。</li>
+                              <li>其他收入。</li>
+                            </ul>
+                            <span>
+                              前項停車場作業基金，得設置基金管理委員會，辦理其收支保管及運用事項；其收支保管及運用辦法，由地方主管機關定之。
+                            </span>
+                          </span>
+                        </p>
+                      </li>
+                    </ul>
+                  </transition>
                 </section>
                 <!-- 停車場法規 第二章 -->
                 <section class="mb-10">
                   <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
-                    第二章 路邊停車場
+                    <span class="d-flex justify-content-between align-items-center px-3" @click="toggleChapter('chapterTwo')">
+                      <span>第二章 路邊停車場</span>
+                      <img class="bg-white p-2 rounded-circle" :src="chapterTwoOpen ? '/icons/triangle.svg' : '/icons/upsidedown_triangle.svg'" alt="toggle-icon">
+                    </span>
                   </div>
-                  <ul class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第12條</span>
-                        <span class="col-6 col-md-8">
-                          地方主管機關為因應停車之需要，得視道路交通狀況，設置路邊停車場，並得向使用者收取停車費。<br />
-                          依前項設置之路邊停車場，應隨路外停車場之增設或道路交通之密集狀況予以檢討廢止或在交通尖峰時段限制停車，以維道路原有之功能。
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第13條</span>
-                        <span class="col-6 col-md-8">
-                          地方主管機關應於路邊停車場開放使用前，將設置地點、停車種類、收費時間、收費方式、費率及其他規定事項公告週知。變更及廢止時，亦同。
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第14條</span>
-                        <span class="col-6 col-md-8">
-                          路邊停車場之費率，應依第三十一條規定定之；其停車費得以計時或計次方式收取，並得視地區交通狀況，採累進方式收費或限制停車時間。
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p class="row">
-                        <span class="fw-bold col-3 col-md-2">第15條</span>
-                        <span class="col-6 col-md-8">
-                          地方主管機關為整頓交通及停車秩序，維護住宅區公共安全，得以標示禁止停車或劃設停車位等方式全面整理卷道。
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
+                  <transition name="collapse">
+                    <ul v-if="chapterTwoOpen" class="bg-blue01 p-6 mt-4 text-navy03 rounded-3">
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第12條</span>
+                          <span class="col-6 col-md-8">
+                            地方主管機關為因應停車之需要，得視道路交通狀況，設置路邊停車場，並得向使用者收取停車費。<br />
+                            依前項設置之路邊停車場，應隨路外停車場之增設或道路交通之密集狀況予以檢討廢止或在交通尖峰時段限制停車，以維道路原有之功能。
+                          </span>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第13條</span>
+                          <span class="col-6 col-md-8">
+                            地方主管機關應於路邊停車場開放使用前，將設置地點、停車種類、收費時間、收費方式、費率及其他規定事項公告週知。變更及廢止時，亦同。
+                          </span>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第14條</span>
+                          <span class="col-6 col-md-8">
+                            路邊停車場之費率，應依第三十一條規定定之；其停車費得以計時或計次方式收取，並得視地區交通狀況，採累進方式收費或限制停車時間。
+                          </span>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="row">
+                          <span class="fw-bold col-3 col-md-2">第15條</span>
+                          <span class="col-6 col-md-8">
+                            地方主管機關為整頓交通及停車秩序，維護住宅區公共安全，得以標示禁止停車或劃設停車位等方式全面整理卷道。
+                          </span>
+                        </p>
+                      </li>
+                    </ul>
+                  </transition>
                 </section>
               </div>
               <div
@@ -371,6 +381,7 @@
   margin-left: auto;
 }
 
+/* 將序列轉為中文一、二、三 */
 .decimal-ul {
   list-style: none; /* Remove the default list style */
   padding: 0; /* Optional: remove default padding */
@@ -388,6 +399,25 @@
   position: absolute; /* Position pseudo-element */
   left: 0; /* Align to the left */
 }
+
+/* 停車場法規開合效果 */
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.collapse-enter-from,
+.collapse-leave-to {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.collapse-enter-to,
+.collapse-leave-from {
+  max-height: 500px;
+  opacity: 1;
+}
 </style>
 
 <script>
@@ -398,6 +428,8 @@ export default {
     return {
       selectedTab: "download", // default selected tab
       inquiryData: null,
+      chapterOneOpen: false,
+      chapterTwoOpen: false,
     };
   },
   components: {
@@ -529,6 +561,13 @@ export default {
             date: "2024/08/08 18:11:24",
           },
         ];
+      }
+    },
+    toggleChapter(chapter) {
+      if (chapter === 'chapterOne') {
+        this.chapterOneOpen = !this.chapterOneOpen;
+      } else if (chapter === 'chapterTwo') {
+        this.chapterTwoOpen = !this.chapterTwoOpen;
       }
     },
   },
