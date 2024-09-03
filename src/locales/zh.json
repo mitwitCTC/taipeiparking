@@ -104,6 +104,18 @@
                 "register": "登記相關作業"
             }
         },
+        "contactUs": {
+            "title": "聯絡公會",
+            "company_name": "公司名稱",
+            "company_phone": "公司電話(含分機)",
+            "contact_name": "聯絡人（職稱）",
+            "contact_phone": "行動電話",
+            "fax": "傳真號碼",
+            "email": "電子郵件",
+            "inquiry": "洽詢事項",
+            "captcha": "驗證碼",
+            "submit": "送出表單"
+        },
         "login": {
             "title": "登入帳號",
             "account": "帳號",
