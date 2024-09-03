@@ -8,7 +8,7 @@
 
       <!-- Login Button (Visible on Mobile) -->
       <button class="btn btn-sm btn-yellow03 text-navy05 fw-bold ms-auto d-lg-none me-2 mt-2">
-        會員登入
+        <router-link to="/login" class="text-navy05">會員登入</router-link>
       </button>
 
       <!-- Navbar Toggler -->
@@ -55,8 +55,8 @@
           </a>
 
           <!-- Login Button (Visible on Desktop) -->
-          <button class="btn btn-sm btn-yellow03 text-navy05 fw-bold ms-4 d-none d-lg-block">
-            會員登入
+          <button class="btn btn-sm btn-yellow03 fw-bold ms-4 d-none d-lg-block">
+            <router-link to="/login" class="text-navy05">會員登入</router-link>
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default defineComponent({
     generateNavData() {
       const router = useRouter();
       // 取得所有的 routes 作為 navItems
-      const excludedNames = ["home", "faq", "privacy", "member", "vendor", "activities", "payment", "announcement-detail"];
+      const excludedNames = ["home", "faq", "privacy", "member", "vendor", "activities", "payment", "announcement-detail", "login", "signup"];
       this.navItems = router.options.routes.filter(
         (item) => !excludedNames.includes(item.name)
       );

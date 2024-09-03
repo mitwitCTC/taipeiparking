@@ -103,6 +103,21 @@
                 "industryRegulations": "產業法規",
                 "register": "登記相關作業"
             }
+        },
+        "login": {
+            "title": "登入帳號",
+            "account": "帳號",
+            "password": "密碼",
+            "login_btn": "登入",
+            "signup": "註冊帳號",
+            "forget": "忘記密碼？"
+        },
+        "signup": {
+            "title": "註冊帳號",
+            "account": "帳號(統一編號)",
+            "account_placeholder": "請輸入貴公司統一編號",
+            "check_btn": "確認帳號是否可用",
+            "login": "登入帳號"
         }
     }
 }

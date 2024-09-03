@@ -14,6 +14,8 @@ import VendorView from '@/views/VendorView.vue'
 import ActivitiesView from '@/views/ActivitiesView.vue'
 import PayView from '@/views/PayView.vue'
 import AnnouncementsDetailView from '@/views/AnnouncementsDetailView.vue'
+import LoginView from '@/views/LoginView.vue'
+import SignupView from '@/views/SignupView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -101,6 +103,18 @@ const router = createRouter({
       name: 'payment',
       component: PayView,
       meta: { title: zh.pages.payment.title || 'payment' }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+      meta: { title: zh.pages.login.title || 'login' }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignupView,
+      meta: { title: zh.pages.signup.title || 'signup' }
     },
   ]
 })
