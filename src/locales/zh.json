@@ -131,5 +131,10 @@
             "check_btn": "確認帳號是否可用",
             "login": "登入帳號"
         }
+    },
+    "validation": {
+        "required": "必填欄位",
+        "email": "格式不符",
+        "regex": "格式不符"
     }
 }

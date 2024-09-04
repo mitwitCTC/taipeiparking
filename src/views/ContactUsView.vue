@@ -12,70 +12,90 @@
             請詳細填寫您的洽詢事項，我們將盡快回覆您
           </div>
           <div class="col-12 col-md-9">
-            <div class="row mb-6 mb-md-10">
-              <div class="col-12 col-md-6">
-                <div>
-                  <label
-                    for="company_name"
-                    class="form-label text-gray15 fs-sm fw-bold"
-                  >
-                    {{ $t("pages.contactUs.company_name") }}
-                  </label>
-                  <input
-                    v-model="contact.company_name"
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="company_name"
-                    placeholder="eg. XXX 停車公司"
-                  />
+            <VeeForm @submit="submit">
+              <div class="row mb-6 mb-md-10">
+                <div class="col-12 col-md-6">
+                  <div>
+                    <label
+                      for="company_name"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.company_name") }}
+                    </label>
+                    <VField
+                      v-model="contact.company_name"
+                      name="company_name"
+                      type="text"
+                      class="form-control form-control-sm"
+                      id="company_name"
+                      placeholder="eg. XXX 停車公司"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div>
+                    <div class="d-flex justify-content-between">
+                      <label
+                        for="contact_name"
+                        class="form-label text-gray15 fs-sm fw-bold"
+                      >
+                        {{ $t("pages.contactUs.contact_name") }}
+                        <span class="text-red02">*</span>
+                      </label>
+                      <ErrorMessage
+                        class="text-red02 fs-sm"
+                        name="contact_name"
+                      />
+                    </div>
+                    <VField
+                      v-model="contact.contact_name"
+                      name="contact_name"
+                      type="text"
+                      class="form-control form-control-sm"
+                      id="contact_name"
+                      placeholder="e.g. 王大明經理"
+                      rules="required"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
-                <div>
-                  <label
-                    for="company_name"
-                    class="form-label text-gray15 fs-sm fw-bold"
-                  >
-                    {{ $t("pages.contactUs.contact_name") }}
-                  </label>
-                  <input
-                    v-model="contact.contact_name"
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="contact_name"
-                    placeholder="e.g. 王大明經理"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="mb-6 mb-md-10">
-                  <label
-                    for="company_phone"
-                    class="form-label text-gray15 fs-sm fw-bold"
-                  >
-                    {{ $t("pages.contactUs.company_phone") }}
-                  </label>
-                  <input
+              <div class="row mb-6 mb-md-10">
+                <div class="col-12 col-md-6">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="company_phone"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.company_phone") }}
+                      <span class="text-red02">*</span>
+                    </label>
+                    <ErrorMessage
+                      class="text-red02 fs-sm"
+                      name="company_phone"
+                    />
+                  </div>
+                  <VField
                     v-model="contact.company_phone"
+                    name="company_phone"
                     type="text"
                     class="form-control form-control-sm"
                     id="company_phone"
-                    placeholder="e.g. (02)88889999"
+                    placeholder="e.g. 02-88889999"
+                    rules="required|phone"
                   />
                 </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="mb-6 mb-md-10">
-                  <label
-                    for="contact_phone"
-                    class="form-label text-gray15 fs-sm fw-bold"
-                  >
-                    {{ $t("pages.contactUs.contact_phone") }}
-                  </label>
-                  <input
+                <div class="col-12 col-md-6">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="contact_phone"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.contact_phone") }}
+                    </label>
+                  </div>
+                  <VField
                     v-model="contact.contact_phone"
+                    name="contact_phone"
                     type="text"
                     class="form-control form-control-sm"
                     id="contact_phone"
@@ -83,80 +103,99 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="mb-6 mb-md-10">
+              <div class="row mb-6 mb-md-10">
+                <div class="col-12 col-md-6">
                   <label for="fax" class="form-label text-gray15 fs-sm fw-bold">
                     {{ $t("pages.contactUs.fax") }}
                   </label>
-                  <input
+                  <VField
                     v-model="contact.fax"
+                    name="fax"
                     type="text"
                     class="form-control form-control-sm"
                     id="fax"
                     placeholder="e.g. 29996666"
                   />
                 </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="mb-6 mb-md-10">
-                  <label
-                    for="email"
-                    class="form-label text-gray15 fs-sm fw-bold"
-                  >
-                    {{ $t("pages.contactUs.email") }}
-                  </label>
-                  <input
+                <div class="col-12 col-md-6">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="email"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.email") }}
+                      <span class="text-red02">*</span>
+                    </label>
+                    <ErrorMessage class="text-red02 fs-sm" name="email" />
+                  </div>
+                  <VField
                     v-model="contact.email"
+                    name="email"
                     type="text"
                     class="form-control form-control-sm"
                     id="email"
                     placeholder="e.g. david@company.com"
+                    rules="required|email"
                   />
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <label
-                  for="inquiry"
-                  class="form-label text-gray15 fs-sm fw-bold"
-                >
-                  {{ $t("pages.contactUs.inquiry") }}
-                </label>
-                <textarea
-                  v-model="contact.inquiry"
-                  type="text"
-                  class="form-control form-control-sm"
-                  id="inquiry"
-                  placeholder="e.g. 請問加入公會對我經營的停車場有什麼助益？"
-                />
+              <div class="row mb-6 mb-md-10">
+                <div class="col-12">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="inquiry"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.inquiry") }}
+                      <span class="text-red02">*</span>
+                    </label>
+                    <ErrorMessage class="text-red02 fs-sm" name="inquiry" />
+                  </div>
+                  <VField
+                    v-model="contact.inquiry"
+                    name="inquiry"
+                    as="textarea"
+                    type="text"
+                    class="form-control form-control-sm"
+                    id="inquiry"
+                    placeholder="e.g. 請問加入公會對我經營的停車場有什麼助益？"
+                    rules="required"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="row mb-6 mb-md-10">
-              <div class="col-7">
-                <label for="fax" class="form-label text-gray15 fs-sm fw-bold">
-                  {{ $t("pages.contactUs.captcha") }}
-                </label>
-                <input
-                  v-model="contact.captcha"
-                  type="text"
-                  class="form-control form-control-sm"
-                  id="captcha"
-                />
+              <div class="row mb-6 mb-md-10">
+                <div class="col-7">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="captcha"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.contactUs.captcha") }}
+                      <span class="text-red02">*</span>
+                    </label>
+                    <ErrorMessage class="text-red02 fs-sm" name="captcha" />
+                  </div>
+                  <VField
+                    v-model="contact.captcha"
+                    name="captcha"
+                    type="text"
+                    class="form-control form-control-sm"
+                    id="captcha"
+                    rules="required"
+                  />
+                </div>
+                <div class="col-3 mt-5">
+                  <div v-html="captcha" @click="fetchCaptcha"></div>
+                </div>
               </div>
-              <div class="col-3 mt-5">
-                <div v-html="captcha" @click="fetchCaptcha"></div>
+              <div class="row">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-navy03 w-100">
+                    {{ $t("pages.contactUs.submit") }}
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <button class="btn btn-navy03 w-100" @click="sumbit">
-                  {{ $t("pages.contactUs.submit") }}
-                </button>
-              </div>
-            </div>
+            </VeeForm>
           </div>
         </div>
       </div>
@@ -176,7 +215,7 @@ input:focus {
 
 <script>
 import TheLayout from "@/components/TheLayout.vue";
-import apiClient from "@/api";
+import { API } from "@/api.js";
 
 export default {
   data() {
@@ -215,16 +254,17 @@ export default {
       }
     },
     async fetchCaptcha() {
+      const fetchCaptchaApi = `${API}/support/captcha`;
       try {
-        const response = await apiClient.get("/support/captcha");
+        const response = await this.axios.get(fetchCaptchaApi);
         this.captcha = response.data;
       } catch (error) {
         console.error("Failed to fetch captcha:", error);
       }
     },
-    async sumbit(){
-      console.log("聯絡表單內容",this.contact);
-    }
+    async submit(values) {
+      console.log(values);
+    },
   },
 };
 </script>

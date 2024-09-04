@@ -8,6 +8,8 @@ import axios from 'axios'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import { createI18n } from 'vue-i18n'
 import zh from '@/locales/zh.json'
+import { Form as VeeForm, Field as VField, ErrorMessage, defineRule, configure } from 'vee-validate';
+import { required, email } from '@vee-validate/rules';
 
 import App from './App.vue'
 import router from './router'
@@ -20,11 +22,31 @@ const i18n = createI18n({
     }
 })
 
+// 驗證規則
+defineRule('required', required);
+defineRule('email', email);
+defineRule('phone', (value) => {
+  const phonePattern = /(\d{2,3}-?|\(\d{2,3}\))\d{3,4}-?\d{4}/;
+  return phonePattern.test(value) ? true : '格式不符';
+});
+
+// 配置 VeeValidate 使用 i18n
+configure({
+  generateMessage: context => {
+    const messages = i18n.global.t(`validation.${context.rule.name}`);
+    return messages || context.message;
+  }
+});
+
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
 app.use(i18n)
+
+app.component('VeeForm', VeeForm);
+app.component('VField', VField);
+app.component('ErrorMessage', ErrorMessage);
 
 app.mount('#app')
