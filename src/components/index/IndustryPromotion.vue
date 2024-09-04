@@ -74,7 +74,7 @@
           :class="{ active: index === 0 }"
         >
           <ul class="row justify-content-center">
-            <li :key="index" class="col-12 col-md-6 mb-6">
+            <li :key="index" class="col-12 mb-6">
               <a
                 :href="item[0].link_url"
                 target="_blank"
@@ -116,8 +116,8 @@
 </template>
 <style scoped>
 .object-fit-container {
-  width: 392px;
-  height: 264px;
+  width: 25vw;
+  aspect-ratio: 392/264;
   img {
     object-fit: cover;
     width: 100%;
@@ -125,17 +125,18 @@
     border-radius: 12px;
   }
 }
+
 .carousel-control-prev {
   position: absolute;
-  left: -5%;
-  top: 40%;
+  left: -6%;
+  top: 10vw;
   transform: translateY(-50%);
 }
 
 .carousel-control-next {
   position: absolute;
-  right: -7%;
-  top: 40%;
+  right: -6%;
+  top: 10vw;
   transform: translateY(-50%);
 }
 
@@ -149,6 +150,42 @@
 
 .carousel-inner {
   position: relative;
+}
+
+@media (max-width: 800px) {
+  .object-fit-container {
+    width: 70vw;
+    aspect-ratio: 392/264;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+  }
+
+  .carousel-control-prev {
+    position: absolute;
+    left: 2%;
+    top: 25vw;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-next {
+    position: absolute;
+    right: 2%;
+    top: 25vw;
+    transform: translateY(-50%);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 800px) {
+  #carouselDesktop {
+    display: none !important;
+  }
+  #carouselMobile {
+    display: block !important;
+  }
 }
 </style>
 <script>
