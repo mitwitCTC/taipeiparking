@@ -174,6 +174,9 @@
                       <span class="text-red02">*</span>
                     </label>
                     <ErrorMessage class="text-red02 fs-sm" name="captcha" />
+                    <span class="text-red02 fs-sm" v-if="submit_result !== ''">
+                      {{ submit_result }}
+                    </span>
                   </div>
                   <VField
                     v-model="contact.captcha"
@@ -231,6 +234,7 @@ export default {
         captcha: "",
       },
       captcha: "",
+      submit_result: ''
     };
   },
   components: {
@@ -263,7 +267,17 @@ export default {
       }
     },
     async submit(values) {
-      console.log(values);
+      const submitApi = `${API}/support`
+      try {
+        const response = await this.axios.post(submitApi, values)
+        if (response.data.status == true) {
+          this.$router.push("/contactSuccess")
+        } else if (response.data.status == false) {
+          this.submit_result = response.data.message
+        }
+      } catch (error) {
+        console.error("Failed to submit:", error);
+      }
     },
   },
 };

@@ -16,6 +16,7 @@ import PayView from '@/views/PayView.vue'
 import AnnouncementsDetailView from '@/views/AnnouncementsDetailView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
+import ContactSuccessView from '@/views/ContactSuccessView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +68,12 @@ const router = createRouter({
       name: 'contactUs',
       component: ContactUsView,
       meta: { title: zh.components.header.contactUs || 'contactUs' }
+    },
+    {
+      path: '/contactSuccess',
+      name: 'contactSuccess',
+      component: ContactSuccessView,
+      meta: { title: zh.pages.contactSuccess.title || 'ContactSuccessView' }
     },
     {
       path: '/faq',
