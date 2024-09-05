@@ -2,8 +2,7 @@
   <div class="bg-monthly">
     <div class="container">
       <div class="row">
-        <section class="col-1"></section>
-        <section class="col-12 col-xl-3">
+        <section class="col-12 col-md-4 col-xl-4">
           <div
             class="d-flex flex-column align-items-center align-items-xl-start"
           >
@@ -20,10 +19,8 @@
             </button>
           </div>
         </section>
-        <section class="col-12 col-xl-7 mt-8 mt-xl-0">
-          <ul
-            class="monthly-spaces d-flex flex-wrap flex-column flex-xl-row align-items-center justify-content-around"
-          >
+        <section class="col-12 col-md-8 col-xl-8 mt-8 mt-xl-0">
+          <ul class="row gap-2 d-flex justify-content-center">
             <li
               class="monthly-space bg-white px-5 justify-content-between mb-2"
               v-for="(item, index) in displayedMonthlySpaces"
@@ -52,16 +49,15 @@
 
 .monthly-space {
   box-shadow: 0px 0px 10px 0px #0000001a;
-  width: 392px;
-  height: 88px;
+  width: 25vw;
+  aspect-ratio: 392/88;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 @media (max-width: 768px) {
   .monthly-space {
-    width: 343px;
-    height: 64px;
+    width: 80vw;
   }
 }
 </style>
