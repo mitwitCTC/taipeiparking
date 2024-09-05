@@ -54,7 +54,7 @@
     </div>
   </section>
 </template>
-<style>
+<style scoped>
 .img-container {
   width: 392px;
   height: 392px;
