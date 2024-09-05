@@ -4,7 +4,7 @@
       <div class="d-flex flex-column align-items-center">
         <img
           class="mb-6 mb-md-8"
-          src="/public/icons/icon_success.svg"
+          src="/icons/icon_success.svg"
           alt="success"
         />
         <p class="text-navy05 fs-xl5 fw-bold mb-md-5">
