@@ -124,8 +124,12 @@
         "login": {
             "title": "登入帳號",
             "account": "帳號",
+            "account_placeholder": "輸入帳號",
+            "password_placeholder": "輸入密碼",
             "password": "密碼",
             "login_btn": "登入",
+            "logining_btn": "登入中...",
+            "no_account": "還沒有帳號嗎？",
             "signup": "註冊帳號",
             "forget": "忘記密碼？"
         },
