@@ -10,9 +10,18 @@
           <div class="row mb-6 mb-md-10">
             <div class="col-12">
               <div class="mb-6 mb-md-8">
-                <label for="user" class="form-label text-gray15 fs-sm fw-bold">
-                  {{ $t("pages.login.account") }}
-                </label>
+                <div class="w-75">
+                  <div class="d-flex justify-content-between">
+                    <label
+                      for="user"
+                      class="form-label text-gray15 fs-sm fw-bold"
+                    >
+                      {{ $t("pages.login.account") }}
+                      <span class="text-red02">*</span>
+                    </label>
+                    <ErrorMessage class="text-red02 fs-sm" name="user" />
+                  </div>
+                </div>
                 <VField
                   v-model="loginData.user"
                   name="user"
@@ -20,25 +29,31 @@
                   class="form-control form-control-sm w-75"
                   id="user"
                   :placeholder="$t('pages.login.account_placeholder')"
+                  rules="required"
                 />
               </div>
-              <div>
-                <label
-                  for="password"
-                  class="form-label text-gray15 fs-sm fw-bold"
-                >
-                  {{ $t("pages.login.password") }}
-                </label>
-                <VField
-                  v-model="loginData.password"
-                  name="password"
-                  type="password"
-                  class="form-control form-control-sm w-75"
-                  id="password"
-                  autocomplete="on"
-                  :placeholder="$t('pages.login.password_placeholder')"
-                />
+              <div class="w-75">
+                <div class="d-flex justify-content-between">
+                  <label
+                    for="password"
+                    class="form-label text-gray15 fs-sm fw-bold"
+                  >
+                    {{ $t("pages.login.password") }}
+                    <span class="text-red02">*</span>
+                  </label>
+                  <ErrorMessage class="text-red02 fs-sm" name="password" />
+                </div>
               </div>
+              <VField
+                v-model="loginData.password"
+                name="password"
+                type="password"
+                class="form-control form-control-sm w-75"
+                id="password"
+                autocomplete="on"
+                :placeholder="$t('pages.login.password_placeholder')"
+                rules="required"
+              />
             </div>
           </div>
           <button
@@ -70,6 +85,10 @@
 <style scoped>
 .content {
   margin-top: 106px;
+}
+
+input:focus {
+  border: 1px solid black;
 }
 
 .image-container {
