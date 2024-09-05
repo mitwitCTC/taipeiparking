@@ -64,6 +64,7 @@
       class="img-bg"
     />
   </div>
+  <TheFooter v-if="isMobile" />
 </template>
 
 <style scoped>
@@ -98,6 +99,7 @@
 
 <script>
 import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   data() {
@@ -106,17 +108,25 @@ export default {
         user: "",
         password: "",
       },
+      isMobile: window.innerWidth < 768,
     };
   },
   components: {
     TheHeader,
+    TheFooter,
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
   },
   beforeUnmount() {
-    window.removeEventListener("resize", this.adjustPaddingTop);
+    window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     submit(values) {
       console.log("submit", values);
+    },
+    handleResize() {
+      this.isMobile = window.innerWidth < 768;
     },
   },
 };
