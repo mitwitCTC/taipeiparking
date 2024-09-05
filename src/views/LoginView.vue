@@ -55,9 +55,15 @@
           </p>
         </VeeForm>
       </div>
-      <div class="col-12 col-md-6">img: /download_sm_bg.jpg</div>
     </div>
   </section>
+  <div class="image-container">
+    <img
+      src="/download_sm_bg.jpg"
+      alt="background_img"
+      class="img-bg"
+    />
+  </div>
 </template>
 
 <style scoped>
@@ -65,9 +71,27 @@
   margin-top: 106px;
 }
 
+.image-container {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.img-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
   .content {
     margin-left: 15vw;
+  }
+  .image-container {
+    display: none;
   }
 }
 </style>
