@@ -16,6 +16,7 @@ import PayView from '@/views/PayView.vue'
 import AnnouncementsDetailView from '@/views/AnnouncementsDetailView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
+import SignupSuccessView from '@/views/SignupSuccessView.vue'
 import ContactSuccessView from '@/views/ContactSuccessView.vue'
 
 const router = createRouter({
@@ -122,6 +123,12 @@ const router = createRouter({
       name: 'signup',
       component: SignupView,
       meta: { title: zh.pages.signup.title || 'signup' }
+    },
+    {
+      path: '/signupSuccess',
+      name: 'signupSuccess',
+      component: SignupSuccessView,
+      meta: { title: zh.pages.signupSuccess.title || 'signupSuccess' }
     },
   ]
 })

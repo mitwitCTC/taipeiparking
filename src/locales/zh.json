@@ -138,13 +138,31 @@
             "account": "帳號(統一編號)",
             "account_placeholder": "請輸入貴公司統一編號",
             "check_btn": "確認帳號是否可用",
+            "loading_btn": "請稍候...",
             "has_account": "已有帳號？",
-            "login": "登入帳號"
+            "login": "登入帳號",
+            "password": "密碼",
+            "password_placeholder": "輸入密碼",
+            "name": "會員名稱",
+            "name_placeholder": "輸入會員名稱",
+            "contact": "聯絡人",
+            "contact_placeholder": "輸入聯絡人姓名",
+            "phone": "聯絡電話",
+            "phone_placeholder": "輸入聯絡人電話",
+            "email": "電子郵件",
+            "email_placeholder": "輸入電子郵件帳號",
+            "signup_btn": "送出註冊"
+        },
+        "signupSuccess": {
+            "title": "註冊成功",
+            "content": "感謝您的註冊，請前往登入頁面重新登入",
+            "btn_text": "會員登入"
         }
     },
     "validation": {
         "required": "必填欄位",
         "email": "格式不符",
-        "regex": "格式不符"
+        "regex": "格式不符",
+        "min": "長度至少6位英文或數字"
     }
 }

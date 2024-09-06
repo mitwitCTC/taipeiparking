@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 import { createI18n } from 'vue-i18n'
 import zh from '@/locales/zh.json'
 import { Form as VeeForm, Field as VField, ErrorMessage, defineRule, configure } from 'vee-validate';
-import { required, email } from '@vee-validate/rules';
+import { required, email, min } from '@vee-validate/rules';
 
 import App from './App.vue'
 import router from './router'
@@ -27,8 +27,13 @@ defineRule('required', required);
 defineRule('email', email);
 defineRule('phone', (value) => {
   const phonePattern = /(\d{2,3}-?|\(\d{2,3}\))\d{3,4}-?\d{4}/;
-  return phonePattern.test(value) ? true : '格式不符';
+  const mobilePattern = /^09[0-9]{8}$/;
+  if (phonePattern.test(value) || mobilePattern.test(value)) {
+    return true;
+  }
+  return '格式不符';
 });
+defineRule('min', min);
 
 // 配置 VeeValidate 使用 i18n
 configure({
