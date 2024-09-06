@@ -138,6 +138,7 @@
             "account": "帳號(統一編號)",
             "account_placeholder": "請輸入貴公司統一編號",
             "check_btn": "確認帳號是否可用",
+            "has_account": "已有帳號？",
             "login": "登入帳號"
         }
     },
