@@ -3,8 +3,11 @@
     <h2 class="text-navy04 fs-xl6 fw-bold text-center mb-10">
       {{ $t("pages.index.industry promotion") }}
     </h2>
+    <h2 v-if="industryPromotions.length < 1" class="text-center mb-20">
+      目前尚無資料
+    </h2>
     <!-- Desktop Carousel (md and above) -->
-    <div
+    <div v-if="industryPromotions.length >= 1"
       id="carouselDesktop"
       class="carousel slide d-none d-md-block"
       data-bs-ride="carousel"
@@ -61,7 +64,7 @@
     </div>
 
     <!-- Mobile Carousel (below md) -->
-    <div
+    <div v-if="industryPromotions.length >= 1"
       id="carouselMobile"
       class="carousel slide d-block d-md-none"
       data-bs-ride="carousel"
@@ -189,6 +192,7 @@
 }
 </style>
 <script>
+import { API } from "@/api.js";
 export default {
   data() {
     return {
@@ -196,13 +200,16 @@ export default {
     };
   },
   methods: {
-    getIndustryPromotions() {
-      const getIndustryPromotionsApi = `api/offer/?row=6&page=1`;
-      this.axios.get(getIndustryPromotionsApi).then((response) => {
+    async getIndustryPromotions() {
+      const getIndustryPromotionsApi = `${API}/offer`;
+      try {
+        const response = await this.axios.get(getIndustryPromotionsApi);
         if (response.data.status == true) {
           this.industryPromotions = response.data.offers;
         }
-      });
+      } catch (error) {
+        console.error("Failed", error);
+      }
     },
     chunkArray(array, chunkSize) {
       const chunks = [];

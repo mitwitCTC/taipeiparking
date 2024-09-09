@@ -6,7 +6,8 @@
           {{ $t("pages.promotion.title") }}
         </p>
       </div>
-      <div class="container d-flex mt-8 mt-md-10">
+      <h2 v-if="promotions.length < 1" class="text-center">目前尚無資料</h2>
+      <div v-if="promotions.length > 1" class="container d-flex mt-8 mt-md-10">
         <ul class="row justify-content-between gap-1">
           <li
             v-for="(item, i) in paginatedPromotions"
@@ -28,6 +29,7 @@
         </ul>
       </div>
       <ThePagination
+         v-if="promotions.length > 1"
         :current-page="currentPage"
         :total-pages="totalPages"
         @page-changed="handlePageChange"
@@ -67,6 +69,7 @@
 </style>
 
 <script>
+import { API } from '@/api.js'
 import TheLayout from "@/components/TheLayout.vue";
 import ThePagination from "@/components/ThePagination.vue"
 
@@ -110,70 +113,16 @@ export default {
         promotionsSection.style.paddingTop = `${headerHeight}px`;
       }
     },
-    getPromotions() {
-      this.promotions = [
-        {
-          title: "永固便利停車月租繳費新選擇",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202408/截圖 2024-08-26 凌晨12.03.33.png",
-          link_url:
-            "http://www.24tps.com.tw/OtherServiceADV/For%20Rent%20Online/rent.htm",
-        },
-        {
-          title: "俥停新北市淡水區停車場--淡水漁人碼頭停車場月租優惠",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202408/org_f2c568e7299827a1_1536114138000.jpg",
-          link_url: "https://www.youparking.com.tw/news-article.php?id=43",
-        },
-        {
-          title: "詮營停車信用卡優惠",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202408/信用卡懶人包1110207-01-1.png",
-          link_url: "https://www.parkinsys.com.tw/news2/",
-        },
-        {
-          title: "2e2",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202407/00009-1101207265.png",
-          link_url: "https://www.youtube.com ",
-        },
-        {
-          title: "YouTubeff",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202407/00009-1101207265.png",
-          link_url: "https://www.ee.ntu.edu.tw",
-        },
-        {
-          title: "fsdafsdfsd ",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/offer/202407/00007-2275314969.png",
-          link_url: "https://www.youtube.com ",
-        },
-        {
-          title: "行動支付繳停車費全攻略",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/album/UCardu20210311105272.jpg",
-          link_url: "https://www.cardu.com.tw/mpay/detail.php?35760",
-        },
-        {
-          title: "行動支付繳停車費全攻略",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/album/UCardu20210311105272.jpg",
-          link_url: "https://www.cardu.com.tw/mpay/detail.php?35760",
-        },
-        {
-          title: "行動支付繳停車費全攻略",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/album/UCardu20210311105272.jpg",
-          link_url: "https://www.cardu.com.tw/mpay/detail.php?35760",
-        },
-        {
-          title: "行動支付繳停車費全攻略",
-          preview_url:
-            "https://t01.mitwit-cre.com.tw/f/test/album/UCardu20210311105272.jpg",
-          link_url: "https://www.cardu.com.tw/mpay/detail.php?35760",
-        },
-      ];
+    async getPromotions() {
+      const getPromotionsApi = `${API}/offer`
+      try {
+        const response = await this.axios.get(getPromotionsApi)
+        if (response.data.status) {
+          this.promotions = response.data.offers          
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
     },
     handlePageChange(page) {
       this.currentPage = page;
