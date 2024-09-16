@@ -40,7 +40,15 @@
           role="tabpanel"
           :aria-labelledby="'nav-' + index + '-tab'"
         >
-          <ul>
+          <!-- loading or no data -->
+          <h2 v-if="loading" class="text-center mb-20">載入中...</h2>
+          <h2
+            v-else-if="announcementsData.length === 0"
+            class="text-center mb-20"
+          >
+            目前尚無資料
+          </h2>
+          <ul v-else>
             <li
               v-for="(item, index) in paginatedAnnouncements"
               :key="index"
@@ -117,6 +125,8 @@
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheLayout from "@/components/TheLayout.vue";
 import ThePagination from "@/components/ThePagination.vue";
 
@@ -127,6 +137,7 @@ export default {
       activeTabIndex: 0, // Track the active tab index
       announcementsType: "",
       announcementsData: [],
+      loading: false,
       currentPage: 1,
       itemsPerPage: 10,
     };
@@ -180,197 +191,28 @@ export default {
       // Fetch data for the first tab by default
       this.fetchAnnouncementsData(this.announcementsTypes[0].type, 0);
     },
-    fetchAnnouncementsData(type, index) {
+    async fetchAnnouncementsData(type, index) {
       this.activeTabIndex = index; // Set the active tab index
-      if (type == "最新消息") {
-        this.announcementsType = "最新消息";
-        this.announcementsData = [
-          {
-            id: 1,
-            type: "最新消息",
-            title:
-              "2025雙北世界壯年運動會，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-            date: "2024.12.10",
-          },
-          {
-            id: 2,
-            type: "最新消息",
-            title:
-              "內政部消防署「建築物附屬停車空間電動車輛充電使用安全指引」.第3點修正規定1份,自即日生效,請會員週知",
-            date: "2024.12.05",
-          },
-          {
-            id: 3,
-            type: "最新消息",
-            title:
-              "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照",
-            date: "2024.12.01",
-          },
-          {
-            id: 4,
-            type: "最新消息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.21",
-          },
-          {
-            id: 5,
-            type: "最新消息",
-            title: "國立台北商業大學附設空中進修學院113年6月1日起網路報名",
-            date: "2024.11.18",
-          },
-          {
-            id: 6,
-            type: "最新消息",
-            title:
-              "2025雙北世界壯年運動會，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-            date: "2024.12.10",
-          },
-          {
-            id: 7,
-            type: "最新消息",
-            title:
-              "內政部消防署「建築物附屬停車空間電動車輛充電使用安全指引」.第3點修正規定1份,自即日生效,請會員週知",
-            date: "2024.12.05",
-          },
-          {
-            id: 8,
-            type: "最新消息",
-            title:
-              "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照",
-            date: "2024.12.01",
-          },
-          {
-            id: 9,
-            type: "最新消息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.21",
-          },
-          {
-            id: 10,
-            type: "最新消息",
-            title: "國立台北商業大學附設空中進修學院113年6月1日起網路報名",
-            date: "2024.11.18",
-          },
-        ];
-      } else if (type == "活動訊息") {
-        this.announcementsType = "活動訊息";
-        this.announcementsData = [
-          {
-            id: 11,
-            type: "活動訊息",
-            title:
-              "2025雙北世界壯年運動會，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-            date: "2024.12.10",
-          },
-          {
-            id: 12,
-            type: "活動訊息",
-            title:
-              "內政部消防署「建築物附屬停車空間電動車輛充電使用安全指引」.第3點修正規定1份,自即日生效,請會員週知",
-            date: "2024.12.05",
-          },
-          {
-            id: 13,
-            type: "活動訊息",
-            title:
-              "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照",
-            date: "2024.12.01",
-          },
-          {
-            id: 14,
-            type: "活動訊息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.21",
-          },
-          {
-            id: 15,
-            type: "活動訊息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.18",
-          },
-        ];
-      } else if (type == "會議訊息") {
-        this.announcementsType = "會議訊息";
-        this.announcementsData = [
-          {
-            id: 16,
-            type: "會議訊息",
-            title:
-              "2025雙北世界壯年運動會，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-            date: "2024.12.10",
-          },
-          {
-            id: 17,
-            type: "會議訊息",
-            title:
-              "內政部消防署「建築物附屬停車空間電動車輛充電使用安全指引」.第3點修正規定1份,自即日生效,請會員週知",
-            date: "2024.12.05",
-          },
-          {
-            id: 18,
-            type: "會議訊息",
-            title:
-              "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照",
-            date: "2024.12.01",
-          },
-          {
-            id: 19,
-            type: "會議訊息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.21",
-          },
-          {
-            id: 20,
-            type: "會議訊息",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.18",
-          },
-        ];
-      } else if (type == "招標資訊") {
-        this.announcementsType = "招標資訊";
-        this.announcementsData = [
-          {
-            id: 21,
-            type: "招標資訊",
-            title:
-              "2025雙北世界壯年運動會，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-            date: "2024.12.10",
-          },
-          {
-            id: 22,
-            type: "招標資訊",
-            title:
-              "內政部消防署「建築物附屬停車空間電動車輛充電使用安全指引」.第3點修正規定1份,自即日生效,請會員週知",
-            date: "2024.12.05",
-          },
-          {
-            id: 23,
-            type: "招標資訊",
-            title:
-              "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照",
-            date: "2024.12.01",
-          },
-          {
-            id: 24,
-            type: "招標資訊",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.21",
-          },
-          {
-            id: 25,
-            type: "招標資訊",
-            title:
-              "2024台北際防火防災應用展專題演講訂於4月26日下午1:35-2:05假南港展覽館1樓1300會議室舉行",
-            date: "2024.11.18",
-          },
-        ];
+      const fetchAnnouncementsDataApi = `${API}/report?type=${type}`;
+      this.loading = true;
+      try {
+        const response = await this.axios.get(fetchAnnouncementsDataApi);
+        if (response.data.status == true) {
+          const reports = response.data.reports;
+          // 檢查是否有公告資訊
+          if (reports.length > 0) {
+            this.announcementsType = reports[0].type;
+            this.announcementsData = reports;
+          } else {
+            this.announcementsData = []; // 若無資料，清空 announcementsData
+          }
+        } else {
+          this.announcementsData = []; // 若 API 回傳狀態為 false，清空 announcementsData
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      } finally {
+        this.loading = false;
       }
     },
     getTypeBadge(type) {

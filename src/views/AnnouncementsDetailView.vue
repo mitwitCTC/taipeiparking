@@ -68,6 +68,8 @@
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
@@ -100,35 +102,16 @@ export default {
         announcement_detailSection.style.paddingTop = `98px`;
       }
     },
-    loadData() {
-      // console.log("Loading data for ID:", this.id, "and Type:", this.type);
-      this.announcement_detail = {
-        id: 1,
-        type: "最新消息",
-        title:
-          "2025雙北世界壯年運動會(114/5/17-114/05/30)，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-        date: "2024.12.10",
-        content:
-          "<p>2025世界壯年運動會(114/5/17-114/05/30)，公會會員報名7折優惠延長至本年6月17日，即日起調查報名人數，請於本年5/12下午6時前回覆本會，以利本會將參加情形回覆停管處。</p><ul><li>1. 詳細內容請至下列網站( https://wmg2025.tw/zh-tw/home/zh-tw ) 查詢。</li><li>2. 公會會員報名7折優惠延長至本年6月17日。</li></li>3.即日起調查欲參加比賽人數，請於本年5/12下午6時前回覆本會。</li><li>4. 公會電話:(02) 2553-5265</li><li>5. 公會電子信箱: taipeiparking54@gmail.com</li></ul>",
-        attaches: [
-          {
-            attach_type: "text/plain",
-            attach_name: "apiv1.docx",
-            attach_url:
-              "https://t01.mitwit-cre.com.tw/f/test/report/202407/40/152315171.docx",
-            attach_pre_url: null,
-          },
-          {
-            attach_type: "image/png",
-            attach_name: "00009-1101207265.png",
-            attach_url:
-              "https://t01.mitwit-cre.com.tw/f/test/report/202407/40/211843050.png",
-            attach_pre_url:
-              "https://t01.mitwit-cre.com.tw/f/test/report/202407/40/211843050_S.jpeg",
-          },
-        ],
-      };
-    },
+    async loadData() {
+      const getAnnouncementsDetailApi = `${API}/report/${this.id}`;      
+      try {
+        const response = await this.axios.get(getAnnouncementsDetailApi);
+        if (response.data.status == true) {
+          this.announcement_detail = response.data;
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }},
     getTypeBadge(type) {
       switch (type) {
         case "最新消息":

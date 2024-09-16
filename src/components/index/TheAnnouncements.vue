@@ -4,6 +4,7 @@
       <h2 class="text-navy04 fs-xl6 fw-bold text-center mb-10">
         {{ $t("pages.index.announcements") }}
       </h2>
+      <h2 v-if="announcements.length < 1" class="text-center">目前尚無資料</h2>
       <ul>
         <li
           v-for="(item, index) in announcements"
@@ -22,9 +23,11 @@
         </li>
       </ul>
       <div class="text-center mt-12">
-        <router-link to="/announcements">
-          <button class="btn btn-navy03 btn-lg">查看更多公告資訊</button>
-        </router-link>
+        <button class="btn btn-navy03 btn-lg" :disabled="announcements.length < 1">
+          <router-link to="/announcements">
+            查看更多公告資訊
+          </router-link>
+        </button>
       </div>
     </section>
   </div>
@@ -46,6 +49,8 @@
 }
 </style>
 <script>
+import { API } from "@/api.js";
+
 export default {
   data() {
     return {
@@ -53,44 +58,16 @@ export default {
     };
   },
   methods: {
-    getAnnouncements() {
-      this.announcements = [
-        {
-          id: 1,
-          type: "最新消息",
-          title:
-            "2025雙北世界壯年運動會(114/5/17-114/05/30)，即日起調查報名人數，請於本年5/12下午6時前回覆本會",
-          date: "2024.12.10",
-        },
-        {
-          id: 2,
-          type: "活動訊息",
-          title:
-            "轉知內政部消防署建築物附屬停車空間電動車輛充電使用安全指引」及總說明、逐點說明各1份,自即日生效。",
-          date: "2024.12.10",
-        },
-        {
-          id: 3,
-          type: "招標資訊",
-          title:
-            "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照。",
-          date: "2024.12.10",
-        },
-        {
-          id: 4,
-          type: "最新消息",
-          title:
-            "為達成本市2050淨零減碳目標，請本會各業者踴躍向本府產業發展局申請「臺北市服務業汰換節能設備補助」，節省機構（事業）用電量一案，請查照。",
-          date: "2024.12.10",
-        },
-        {
-          id: 5,
-          type: "會議訊息",
-          title:
-            "本會第21屆第1次會員大會謹訂於111年9月30日假典華大直店3樓金枝玉葉廳舉行，請撥冗參加，並請線上填寫大會回條，詳如內文",
-          date: "2024.12.10",
-        },
-      ];
+    async getAnnouncements() {
+      const getAnnouncementsApi = `${API}/report`
+      try {
+        const response = await this.axios.get(getAnnouncementsApi)
+        if (response.data.status) {
+          this.announcements = response.data.reports
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
     },
     getTypeBadge(type) {
       switch (type) {
