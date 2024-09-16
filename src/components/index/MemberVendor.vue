@@ -35,26 +35,16 @@
         role="tabpanel"
         aria-labelledby="nav-member-tab"
       >
-        <ul
+        <h2 v-if="members.length < 1" class="text-center mb-20">
+          目前尚無資料
+        </h2>
+        <ul v-else
           class="row row-cols-lg-3 row-cols-md-3 row-cols-2 gap-3 gap-md-6 justify-content-center"
         >
-          <li class="member-container">
-            <img src="/index/members/1.svg" alt="member-logo" />
-          </li>
-          <li class="member-container">
-            <img src="/index/members/2.svg" alt="member-logo" />
-          </li>
-          <li class="member-container">
-            <img src="/index/members/3.svg" alt="member-logo" />
-          </li>
-          <li class="member-container">
-            <img src="/index/members/4.svg" alt="member-logo" />
-          </li>
-          <li class="member-container">
-            <img src="/index/members/5.svg" alt="member-logo" />
-          </li>
-          <li class="member-container">
-            <img src="/index/members/6.svg" alt="member-logo" />
+          <li v-for="(item, index) in members" class="member-container" :key="index">
+            <a :href='item.link_url' target="_blank" rel="noopener noreferrer">
+              <img :src='item.preview_url' alt="item.name">
+            </a>
           </li>
         </ul>
         <div class="text-center mt-12">
@@ -191,10 +181,12 @@
 }
 </style>
 <script>
+import { API } from "@/api.js";
 export default {
   data() {
     return {
       windowWidth: window.innerWidth,
+      members: [],
     };
   },
   computed: {
@@ -211,9 +203,23 @@ export default {
   beforeUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   },
+  mounted() {
+    this.getMembers()
+  },
   methods: {
     updateWindowWidth() {
       this.windowWidth = window.innerWidth;
+    },
+    async getMembers() {
+      const getMembersApi = `${API}/member`;
+      try {
+        const response = await this.axios.get(getMembersApi);
+        if (response.data.status == true) {
+          this.members = response.data.members;
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
     },
   },
 };

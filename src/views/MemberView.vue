@@ -16,14 +16,18 @@
             <div
               class="h-100 d-flex flex-column justify-content-center align-items-center"
             >
-              <div>
+              <a :href="member.link_url || null" target="_blank">
                 <div class="img-container">
-                  <img :src="member.preview_url" :alt="member.name" />
+                  <img
+                    :src="member.preview_url || defaultImage" 
+                    :alt="member.name"
+                    @error="handleImageError"
+                  />
                 </div>
                 <p class="text-navy03 text-start fw-bold mt-2 mt-md-4">
                   {{ member.name }}
                 </p>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -72,12 +76,14 @@
 </style>
 
 <script>
+import { API } from '@/api.js'
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
   data() {
     return {
       members: [],
+      defaultImage: '/default.svg',
     };
   },
   components: {
@@ -101,33 +107,19 @@ export default {
         memberSection.style.paddingTop = `${headerHeight}px`;
       }
     },
-    getMembers() {
-      this.members = [
-        {
-          name: "TIMES 停車",
-          preview_url: "/index/members/1.svg",
-        },
-        {
-          name: "City Parking 城市商旅",
-          preview_url: "/index/members/2.svg",
-        },
-        {
-          name: "嘟嘟房",
-          preview_url: "/index/members/3.svg",
-        },
-        {
-          name: "uTagGo",
-          preview_url: "/index/members/4.svg",
-        },
-        {
-          name: "應安 168 停車",
-          preview_url: "/index/members/5.svg",
-        },
-        {
-          name: "JSP正好停",
-          preview_url: "/index/members/6.svg",
-        },
-      ];
+    async getMembers() {
+      const getMembersApi = `${API}/member`
+      try {
+        const response = await this.axios.get(getMembersApi);
+        if (response.data.status == true) {
+          this.members = response.data.members;
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
+    },
+    handleImageError(event) {
+      event.target.src = this.defaultImage; // Replace with default image on error
     },
   },
 };
