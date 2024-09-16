@@ -11,15 +11,17 @@
           :key="index"
           class="announcement pt-10 pb-8 border-bottom"
         >
-          <p class="text-navy05 fw-bold fs-xl mb-5">{{ item.date }}</p>
-          <div class="d-flex align-items-center gap-4">
-            <span class="badge" :class="getTypeBadge(item.type)">
-              {{ item.type }}
-            </span>
-            <p class="text-navy03 fw-bold mb-0 text-truncate">
-              {{ item.title }}
-            </p>
-          </div>
+          <router-link :to="`/announcements/${item.type}/${item.id}`">
+            <p class="text-navy05 fw-bold fs-xl mb-5">{{ item.date }}</p>
+            <div class="d-flex align-items-center gap-4">
+              <span class="badge" :class="getTypeBadge(item.type)">
+                {{ item.type }}
+              </span>
+              <p class="text-navy03 fw-bold mb-0 text-truncate">
+                {{ item.title }}
+              </p>
+            </div>
+          </router-link>
         </li>
       </ul>
       <div class="text-center mt-12">
