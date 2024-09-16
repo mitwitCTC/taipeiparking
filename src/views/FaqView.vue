@@ -94,7 +94,7 @@ export default {
     adjustPaddingTop() {
       const layout = this.$refs.layoutRef;
       if (layout && layout.$refs.headerRef) {
-        const headerHeight = layout.$refs.headerRef.$el.offsetHeight;
+        const headerHeight = 98;
         const faqSection = this.$el.querySelector(".faq");
         faqSection.style.paddingTop = `${headerHeight}px`;
       }

@@ -1,6 +1,6 @@
 <template>
   <TheLayout ref="layoutRef">
-    <section id="faq" class="faq">
+    <section id="content" class="content">
       <div class="bg-yellow03 py-md-12 py-6 tab-bg">
         <p class="container text-navy05 fs-xl5 fw-bold mb-4 mb-md-0">
           {{ $t("pages.contactUs.title") }}
@@ -207,7 +207,7 @@
 </template>
 
 <style scoped>
-.faq {
+.content {
   padding-bottom: clamp(80px, 5.16vw + 33.1px, 160px);
 }
 
@@ -252,9 +252,9 @@ export default {
     adjustPaddingTop() {
       const layout = this.$refs.layoutRef;
       if (layout && layout.$refs.headerRef) {
-        const headerHeight = layout.$refs.headerRef.$el.offsetHeight;
-        const faqSection = this.$el.querySelector(".faq");
-        faqSection.style.paddingTop = `${headerHeight}px`;
+        const headerHeight = 98;
+        const contentSection = this.$el.querySelector(".content");
+        contentSection.style.paddingTop = `${headerHeight}px`;
       }
     },
     async fetchCaptcha() {

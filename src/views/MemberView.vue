@@ -102,7 +102,7 @@ export default {
       // Access the layout and header refs correctly
       const layout = this.$refs.layoutRef;
       if (layout && layout.$refs.headerRef) {
-        const headerHeight = layout.$refs.headerRef.$el.offsetHeight;
+        const headerHeight = 98;
         const memberSection = this.$el.querySelector(".member");
         memberSection.style.paddingTop = `${headerHeight}px`;
       }
