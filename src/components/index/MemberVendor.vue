@@ -59,67 +59,18 @@
         role="tabpanel"
         aria-labelledby="nav-vendor-tab"
       >
+        <h2 v-if="vendorTypes.length < 1" class="text-center mb-20">
+          目前尚無資料
+        </h2>
         <ul
           class="row row-cols-lg-3 row-cols-md-3 row-cols-2 gap-3 gap-md-6 justify-content-center"
         >
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
+          <li v-for="(item, index) in vendorTypes" :key="index" class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center">
             <div class="text-center">
               <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                收費系統
+                {{ item.type}}
               </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
-            </div>
-          </li>
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
-            <div class="text-center">
-              <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                監控系統
-              </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
-            </div>
-          </li>
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
-            <div class="text-center">
-              <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                附屬設施
-              </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
-            </div>
-          </li>
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
-            <div class="text-center">
-              <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                資訊服務
-              </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
-            </div>
-          </li>
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
-            <div class="text-center">
-              <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                水電及工程
-              </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
-            </div>
-          </li>
-          <li
-            class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center"
-          >
-            <div class="text-center">
-              <p :class="vendorName_fs" class="text-navy05 fw-bold mb-1">
-                金融及保險
-              </p>
-              <p :class="vendorNum_fs" class="text-navy03 mb-0">24間廠商</p>
+              <p :class="vendorNum_fs" class="text-navy03 mb-0">{{ item.count }}間廠商</p>
             </div>
           </li>
         </ul>
@@ -187,6 +138,7 @@ export default {
     return {
       windowWidth: window.innerWidth,
       members: [],
+      vendorTypes: []
     };
   },
   computed: {
@@ -205,6 +157,7 @@ export default {
   },
   mounted() {
     this.getMembers()
+    this.getVendorTypes()
   },
   methods: {
     updateWindowWidth() {
@@ -216,6 +169,17 @@ export default {
         const response = await this.axios.get(getMembersApi);
         if (response.data.status == true) {
           this.members = response.data.members;
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
+    },
+    async getVendorTypes() {
+      const getVendorsApi = `${API}/vendor`;
+      try {
+        const response = await this.axios.get(getVendorsApi);
+        if (response.data.status == true) {
+          this.vendorTypes = response.data.vendorTypes;
         }
       } catch (error) {
         console.error("Failed", error);

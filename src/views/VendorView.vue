@@ -47,10 +47,14 @@
               :key="index"
               class="col-md-6 col-lg-4 col-xl-3 mb-4"
             >
-              <div
-                class="h-100 d-flex flex-column justify-content-center align-items-center"
+              <a
+                :href="vendor.link_url"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div>
+                <div
+                  class="h-100 d-flex flex-column justify-content-center align-items-center"
+                >
                   <div class="img-container">
                     <img :src="vendor.preview_url" :alt="vendor.name" />
                   </div>
@@ -58,7 +62,7 @@
                     {{ vendor.name }}
                   </p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -147,6 +151,7 @@ nav::-webkit-scrollbar {
 </style>
 
 <script>
+import { API } from "@/api.js";
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
@@ -179,118 +184,30 @@ export default {
         vendorSection.style.paddingTop = `${headerHeight}px`;
       }
     },
-    getVendorTypes() {
-      this.vendorTypes = [
-        {
-          type: "收費系統",
-          count: 8,
-        },
-        {
-          type: "監控系統",
-          count: 4,
-        },
-        {
-          type: "附屬設施",
-          count: 1,
-        },
-        {
-          type: "資訊服務",
-          count: 4,
-        },
-        {
-          type: "金融及保險",
-          count: 1,
-        },
-      ];
-      // Fetch data for the first tab by default
-      this.fetchVendorData(this.vendorTypes[0].type, 0);
+    async getVendorTypes() {
+      const getVendorsApi = `${API}/vendor`;
+      try {
+        const response = await this.axios.get(getVendorsApi);
+        if (response.data.status == true) {
+          this.vendorTypes = response.data.vendorTypes;
+          this.fetchVendorData(this.vendorTypes[0], 0);
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      }
     },
-    fetchVendorData(type, index) {
+    async fetchVendorData(type, index) {
       this.activeTabIndex = index; // Set the active tab index
-      if (type == "收費系統") {
-        this.vendorType = "收費系統";
-        this.vendorData = [];
-        this.vendorCount = 0;
-      } else if (type == "監控系統") {
-        this.vendorType = "監控系統";
-        this.vendorData = [
-          {
-            name: "慶立工程",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/415517759_669835842002689_892192799853392770_n.jpg",
-            link_url: "https://www.facebook.com/profile.php?id=100069288366635",
-          },
-          {
-            name: "test",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/00007-2275314969.png",
-            link_url: "https://google.com",
-          },
-          {
-            name: "test",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/00011-1101207267.png",
-            link_url: "https://google.com",
-          },
-          {
-            name: "TEST3",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/00011-1101207267.png",
-            link_url: "http://www.youtube.com",
-          },
-        ];
-        this.vendorCount = 4;
-      } else if (type == "附屬設施") {
-        this.vendorType = "附屬設施";
-        this.vendorData = [
-          {
-            name: "TEST5",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/album/1721759094251.jpg",
-            link_url: null,
-          },
-        ];
-        this.vendorCount = 1;
-      } else if (type == "資訊服務") {
-        this.vendorType = "資訊服務";
-        this.vendorData = [
-          {
-            name: "車麻吉",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/下載.png",
-            link_url: "https://carmochi.com/",
-          },
-          {
-            name: "NewVendorName",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/test.png",
-            link_url: "https://example.com/new-link",
-          },
-          {
-            name: "Updated Vendor Name",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/test.png",
-            link_url: "https://example.com/new-link",
-          },
-          {
-            name: "TEST6",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/album/1721759094251.jpg",
-            link_url: null,
-          },
-        ];
-        this.vendorCount = 4;
-      } else if (type == "金融及保險") {
-        this.vendorType = "金融及保險";
-        this.vendorData = [
-          {
-            name: "34534534543",
-            preview_url:
-              "https://t01.mitwit-cre.com.tw/f/test/vendor/202408/00012-1101207268.png",
-            link_url: "http://www.youtube.com",
-          },
-        ];
-        this.vendorCount = 1;
+      const fetchVendorDataApi = `${API}/vendor/list?type=${type}`;
+      try {
+        const response = await this.axios.get(fetchVendorDataApi);
+        if (response.data.status == true) {
+          this.vendorType = response.data.vendorTypes[0].type;
+          this.vendorData = response.data.vendorTypes[0].vendors;
+          this.vendorCount = response.data.vendorTypes[0].count;
+        }
+      } catch (error) {
+        console.error("Failed", error);
       }
     },
   },
