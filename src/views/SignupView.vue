@@ -325,12 +325,18 @@ export default {
       }
     },
     async signup(values) {
-      console.log("送出註冊", values);
       this.loading = true;
-      setTimeout(() => {
+      const signupApi =  `${API}/sign_in/send`;
+      try {
+        const response = await this.axios.post(signupApi, values)
+        if (response.data.status == true) {
+          this.$router.push("/signupSuccess");
+        }
+      } catch (error) {
+        console.error("Failed:", error);
+      } finally {
         this.loading = false;
-        this.$router.push("/signupSuccess");
-      }, 3000);
+      }
     },
     handleResize() {
       this.isMobile = window.innerWidth < 768;
