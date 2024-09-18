@@ -105,7 +105,15 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-download-tab"
               >
-                <ul>
+                <!-- loading or no data -->
+                <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
+                <h2
+                  v-else-if="inquiryData.length == 0"
+                  class="text-center mb-20"
+                >
+                  目前尚無資料
+                </h2>
+                <ul v-else>
                   <li
                     v-for="(item, index) in inquiryData"
                     :key="index"
@@ -135,8 +143,19 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-parkingLotRegulations-tab"
               >
+                <!-- loading or no data -->
+                <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
+                <h2
+                  v-else-if="inquiryData.length == 0"
+                  class="text-center mb-20"
+                >
+                  目前尚無資料
+                </h2>
+                <div v-else>
+                  {{ inquiryData }}
+                </div>
                 <!-- 停車場法規 第一章 -->
-                <section class="mb-10">
+                <!-- <section class="mb-10">
                   <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
                     <span class="d-flex justify-content-between align-items-center px-3" @click="toggleChapter('chapterOne')">
                       <span>第一章 總則</span>
@@ -213,9 +232,9 @@
                       </li>
                     </ul>
                   </transition>
-                </section>
+                </section> -->
                 <!-- 停車場法規 第二章 -->
-                <section class="mb-10">
+                <!-- <section class="mb-10">
                   <div class="text-white fw-bold bg-navy03 py-6 ps-6 rounded-3">
                     <span class="d-flex justify-content-between align-items-center px-3" @click="toggleChapter('chapterTwo')">
                       <span>第二章 路邊停車場</span>
@@ -259,7 +278,7 @@
                       </li>
                     </ul>
                   </transition>
-                </section>
+                </section> -->
               </div>
               <div
                 class="tab-pane fade"
@@ -267,7 +286,15 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-industryRegulations-tab"
               >
-                <ul>
+                <!-- loading or no data -->
+                <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
+                <h2
+                  v-else-if="inquiryData.length == 0"
+                  class="text-center mb-20"
+                >
+                  目前尚無資料
+                </h2>
+                <ul v-else>
                   <li
                     v-for="(item, index) in inquiryData"
                     :key="index"
@@ -297,7 +324,15 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-register-tab"
               >
-                <ul>
+                <!-- loading or no data -->
+                <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
+                <h2
+                  v-else-if="inquiryData.length == 0"
+                  class="text-center mb-20"
+                >
+                  目前尚無資料
+                </h2>
+                <ul v-else>
                   <li
                     v-for="(item, index) in inquiryData"
                     :key="index"
@@ -421,15 +456,18 @@
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
   data() {
     return {
       selectedTab: "download", // default selected tab
-      inquiryData: null,
+      inquiryData: [],
       chapterOneOpen: false,
       chapterTwoOpen: false,
+      isLoading: false,
     };
   },
   components: {
@@ -483,84 +521,20 @@ export default {
         color: "#04172E",
       };
     },
-    getInquiryData(type) {
-      if (type === "資料下載") {
-        this.inquiryData = [
-          {
-            type: "資料下載",
-            name: "台北市停車公會會員申請書",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "資料下載",
-            name: "台北市停車公會會員復権申請書",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "資料下載",
-            name: "第 38 次公會會議紀錄",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-        ];
-      } else if (type === "停車場法規") {
-        this.inquiryData = [];
-      } else if (type === "產業法規") {
-        this.inquiryData = [
-          {
-            type: "產業法規",
-            name: "修正停車場法第十四條第十七條...得以30分鐘為計費單位",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "產業法規",
-            name: "大眾捷運系統建設及周邊土地開發計畫申請與審查作業要點",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "產業法規",
-            name: "停車場設計問題",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "產業法規",
-            name: "停車場指標設置",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "產業法規",
-            name: "停車格位與禁停標線之劃設原則",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "產業法規",
-            name: "台北市汽車業停車場設置辦法",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-        ];
-      } else if (type === "登記相關作業") {
-        this.inquiryData = [
-          {
-            type: "登記相關作業",
-            name: "台北市停車公會會員申請作業內容須知 （.PDF）",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-          {
-            type: "登記相關作業",
-            name: "停車公會資料申請填表",
-            url: "https://t01.mitwit-cre.com.tw/f/test/download/202408/復權申請書.pdf",
-            date: "2024/08/08 18:11:24",
-          },
-        ];
+    async getInquiryData(type) {
+      const getInquiryDataApi = `${API}/download?type=${type}`;
+      this.isLoading = true;
+      try {
+        const response = await this.axios.get(getInquiryDataApi);        
+        if (response.data.status == true) {
+          this.inquiryData = response.data.files;
+        } else {
+          this.inquiryData = []; // 若 API 回傳狀態為 false，清空 inquiryData
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     toggleChapter(chapter) {
