@@ -1,6 +1,9 @@
 <template>
   <TheHeader ref="layoutRef"></TheHeader>
   <section id="content" class="container content">
+    <div v-if="login_message != ''" class="alert" :class="isLoginSuccess ? 'alert-warning' : 'alert-danger'" role="alert">
+    {{login_message}}
+    </div>
     <div class="row">
       <div class="col-12 col-md-6 mt-10 mt-md-20">
         <p class="text-navy05 fs-xl5 fw-bold">
@@ -59,8 +62,9 @@
           <button
             type="submit"
             class="btn btn-navy03 fw-bold w-75 mb-6 mb-md-8"
+            :disabled="isLoading"
           >
-            {{ $t("pages.login.login_btn") }}
+            {{ isLoading ? "登入中..." : $t("pages.login.login_btn") }}
           </button>
           <p class="text-center w-75">
             {{ $t("pages.login.no_account") }}
@@ -106,6 +110,16 @@ input:focus {
   object-fit: cover;
 }
 
+.alert {
+  width: 25vw;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
 @media (max-width: 768px) {
   .content {
     margin-left: 15vw;
@@ -117,6 +131,8 @@ input:focus {
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
@@ -127,6 +143,9 @@ export default {
         user: "",
         password: "",
       },
+      isLoading: false,
+      isLoginSuccess: null,
+      login_message: "",
       isMobile: window.innerWidth < 768,
     };
   },
@@ -141,8 +160,24 @@ export default {
     window.removeEventListener("resize", this.handleResize);
   },
   methods: {
-    submit(values) {
-      console.log("submit", values);
+    async submit(values) {
+      this.isLoading = true;
+      const loginApi = `${API}/person/login`;
+      try {
+        const response = await this.axios.post(loginApi, values);
+        if (response.data.status == true) {
+          this.isLoginSuccess = true;
+          this.$router.push("/");
+        }
+        this.login_message = response.data.message;
+        setTimeout(() => {
+          this.login_message = "";
+        }, 3000);
+      } catch (error) {
+        console.error("Failed:", error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     handleResize() {
       this.isMobile = window.innerWidth < 768;
