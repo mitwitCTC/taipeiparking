@@ -13,7 +13,7 @@
               {{ $t("pages.index.monthly.des") }}
             </p>
             <button class="btn btn-navy03 btn-xl">
-              <router-link to="/">
+              <router-link to="/monthly">
                 {{ $t("pages.index.monthly.btn-text") }}
               </router-link>
             </button>

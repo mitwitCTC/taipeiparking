@@ -104,6 +104,11 @@
                 "register": "登記相關作業"
             }
         },
+        "monthly": {
+            "title": "租車位",
+            "searchByMap": "地圖搜尋",
+            "searchPlaceholder": "輸入車位目的地"
+        },
         "contactUs": {
             "title": "聯絡公會",
             "company_name": "公司名稱",

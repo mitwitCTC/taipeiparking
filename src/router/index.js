@@ -18,6 +18,7 @@ import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import SignupSuccessView from '@/views/SignupSuccessView.vue'
 import ContactSuccessView from '@/views/ContactSuccessView.vue'
+import MonthlyView from '@/views/MonthlyView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -129,6 +130,12 @@ const router = createRouter({
       name: 'signupSuccess',
       component: SignupSuccessView,
       meta: { title: zh.pages.signupSuccess.title || 'signupSuccess' }
+    },
+    {
+      path: '/monthly',
+      name: 'monthly',
+      component: MonthlyView,
+      meta: { title: zh.pages.monthly.title || 'monthly' }
     },
   ]
 })
