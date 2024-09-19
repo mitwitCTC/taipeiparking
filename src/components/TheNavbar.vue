@@ -7,8 +7,8 @@
       </router-link>
 
       <!-- Login Button (Visible on Mobile) -->
-      <button class="btn btn-sm btn-yellow03 text-navy05 fw-bold ms-auto d-lg-none me-2 mt-2">
-        <router-link to="/login" class="text-navy05">會員登入</router-link>
+      <button class="btn btn-sm btn-yellow03 text-navy05 fw-bold ms-auto d-lg-none me-2 mt-2" @click="handleLoginLogout">
+        {{ loginInfo ? '會員登出' : '會員登入' }}
       </button>
 
       <!-- Navbar Toggler -->
@@ -42,6 +42,7 @@
           >
             {{ item.meta.title }}
           </router-link>
+          <a v-if="loginInfo != null" href="https://t01.mitwit-cre.com.tw/manager" class="mt-md-2">新增場站</a>
         </div>
 
         <!-- Right Links and Login Button -->
@@ -55,8 +56,8 @@
           </a>
 
           <!-- Login Button (Visible on Desktop) -->
-          <button class="btn btn-sm btn-yellow03 fw-bold ms-4 d-none d-lg-block">
-            <router-link to="/login" class="text-navy05">會員登入</router-link>
+          <button class="btn btn-sm btn-yellow03 text-navy05 fw-bold ms-4 d-none d-lg-block" @click="handleLoginLogout">
+              {{ loginInfo ? '會員登出' : '會員登入' }}
           </button>
         </div>
       </div>
@@ -65,6 +66,9 @@
 </template>
 
 <script>
+import { API } from '@/api.js'
+import { getCookie, deleteCookie } from '@/cookie.js';
+
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
@@ -72,11 +76,19 @@ export default defineComponent({
   name: "TheNavbar",
   data() {
     return {
+      loginInfo: null,
       navItems: [],
       isNavbarOpen: false,
     };
   },
+  created() {
+    // 檢查 _LOGIN_INFO cookie
+    this.loginInfo = this.getLoginInfo();     
+  },
   methods: {
+    getLoginInfo() {
+      return getCookie('_LOGIN_INFO');
+    },
     generateNavData() {
       const router = useRouter();
       // 取得所有的 routes 作為 navItems
@@ -91,9 +103,32 @@ export default defineComponent({
     closeNavbar() {
       this.isNavbarOpen = false;
     },
+    async handleLoginLogout() {
+      if (this.loginInfo) {
+        const logoutApi = `${API}/person/logout`;
+        try {
+          const response = await this.axios.get(logoutApi);
+          if (response.data.status == true) {
+            deleteCookie('_LOGIN_INFO');
+            this.loginInfo = null;
+            this.$router.push("/");
+          }
+        } catch (error) {
+          console.error("Failed:", error);
+        }
+      } else {
+        this.$router.push("/login");
+      }
+    },
   },
   mounted() {
     this.generateNavData();
+    this.loginInfo = this.getLoginInfo(); 
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.checkLoginInfo();  // 確保在每次進入路由時檢查
+    });
   },
   computed: {
     navbarIcon() {
