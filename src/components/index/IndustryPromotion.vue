@@ -111,7 +111,7 @@
 </template>
 <style scoped>
 .object-fit-container {
-  width: 25vw;
+  width: 20vw;
   aspect-ratio: 392/264;
   img {
     object-fit: cover;
@@ -123,24 +123,16 @@
 
 .carousel-control-prev {
   position: absolute;
-  left: -6%;
-  top: 10vw;
+  left: -7.5%;
+  top: 7.5vw;
   transform: translateY(-50%);
 }
 
 .carousel-control-next {
   position: absolute;
-  right: -6%;
-  top: 10vw;
+  right: -7.5%;
+  top: 7.5vw;
   transform: translateY(-50%);
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  width: 48px;
-  height: 48px;
-  background: white;
-  border-radius: 50%;
 }
 
 .carousel-inner {
@@ -159,16 +151,40 @@
     }
   }
 
+  .carousel-inner {
+    position: relative;
+  }
+
   .carousel-control-prev {
     position: absolute;
-    left: 2%;
+    left: -3.5%;
     top: 25vw;
     transform: translateY(-50%);
   }
 
   .carousel-control-next {
     position: absolute;
-    right: 2%;
+    right: -3.5%;
+    top: 25vw;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 575px) {
+  .carousel-inner {
+    position: relative;
+  }
+
+  .carousel-control-prev {
+    position: absolute;
+    left: 5.5%;
+    top: 25vw;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-next {
+    position: absolute;
+    right: 5.5%;
     top: 25vw;
     transform: translateY(-50%);
   }
@@ -180,6 +196,24 @@
   }
   #carouselMobile {
     display: block !important;
+  }
+
+  .carousel-inner {
+    position: relative;
+  }
+
+  .carousel-control-prev {
+    position: absolute;
+    left: -7.5%;
+    top: 25vw;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-next {
+    position: absolute;
+    right: -7.5%;
+    top: 25vw;
+    transform: translateY(-50%);
   }
 }
 </style>
