@@ -45,9 +45,7 @@
         data-bs-target="#carouselDesktop"
         data-bs-slide="prev"
       >
-        <i
-          class="bi bi-arrow-left fs-xl5 text-navy03 carousel-control-prev-icon"
-        ></i>
+        <img src="/icons/btn_prePage.svg" alt="btn_prePage">
         <span class="visually-hidden">Previous</span>
       </button>
       <button
@@ -56,9 +54,7 @@
         data-bs-target="#carouselDesktop"
         data-bs-slide="next"
       >
-        <i
-          class="bi bi-arrow-right fs-xl5 text-navy03 carousel-control-next-icon"
-        ></i>
+        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage">
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -98,9 +94,7 @@
         data-bs-target="#carouselMobile"
         data-bs-slide="prev"
       >
-        <i
-          class="bi bi-arrow-left fs-xl5 text-navy03 carousel-control-prev-icon"
-        ></i>
+        <img src="/icons/btn_prePage.svg" alt="btn_prePage">
         <span class="visually-hidden">Previous</span>
       </button>
       <button
@@ -109,9 +103,7 @@
         data-bs-target="#carouselMobile"
         data-bs-slide="next"
       >
-        <i
-          class="bi bi-arrow-right fs-xl5 text-navy03 carousel-control-next-icon"
-        ></i>
+        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage">
         <span class="visually-hidden">Next</span>
       </button>
     </div>
