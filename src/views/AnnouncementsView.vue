@@ -91,7 +91,7 @@
 .nav-container {
   position: absolute;
   bottom: 0;
-  left: 10vw;
+  left: 17vw;
   width: 80%;
   overflow-x: auto;
   overflow-y: hidden;
