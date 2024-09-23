@@ -37,30 +37,41 @@
           :aria-labelledby="'nav-' + index + '-tab'"
         >
           <div v-if="paymentType == '停車場（路外）'">
-            <ul class="row">
+            <div v-if="isLoading">
+              載入中...
+            </div>
+            <ul v-else class="row">
               <li
                 class="col-12 col-md-6 mb-6"
                 v-for="(item, itemIndex) in paymentData"
                 :key="itemIndex"
               >
                 <div
-                  class="payment-item d-flex align-items-center justify-content-between"
+                  class="payment-item"
                 >
-                  <div class="d-flex align-items-center">
-                    <img
-                      class="me-6"
-                      :src="item.preview_url"
-                      alt="payment_logo"
-                    />
-                    <p class="mt-5">{{ item.name }}</p>
+                <a :href="item.payment_url" target="_blank" rel="noopener noreferrer">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                      <div class="img-container me-6">
+                        <img
+                          :src="item.memberLogo"
+                          alt="payment_logo"
+                        />
+                      </div>
+                      <p class="text-navy03 fs-xl fw-bold mt-5 me-2">{{ item.memberName }}</p>
+                    </div>
+                      <i class="bi bi-box-arrow-up-right text-navy02"></i>
+                    </div>
+                  </a>
                   </div>
-                  <i class="bi bi-box-arrow-up-right"></i>
-                </div>
               </li>
             </ul>
           </div>
           <div v-else-if="paymentType === '縣市政府路邊'">
-            <div v-for="(area, areaIndex) in paymentData" :key="areaIndex">
+            <div v-if="isLoading">
+              載入中...
+            </div>
+            <div v-else v-for="(area, areaIndex) in paymentData" :key="areaIndex">
               <h3 class="text-navy03 fs-xl3 fw-bold mt-4 mb-2">
                 {{ area.area }}
               </h3>
@@ -70,7 +81,8 @@
                   v-for="(region, regionIndex) in area.regions"
                   :key="regionIndex"
                 >
-                  <div
+                  <a :href="region.url" target="_blank" rel="noopener noreferrer">
+                   <div
                     class="py-6 d-flex align-items-center justify-content-between"
                   >
                     <p
@@ -82,7 +94,8 @@
                     <div class="text-end">
                       <i class="bi bi-box-arrow-up-right text-navy02 fs-xl"></i>
                     </div>
-                  </div>
+                   </div>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -105,7 +118,7 @@
 nav {
   position: absolute;
   bottom: 0;
-  left: 10vw;
+  left: 17vw;
 }
 
 .nav-tabs,
@@ -133,7 +146,7 @@ nav {
 }
 
 .payment-item {
-  max-width: 600px;
+  max-width: 30vw;
   border: 1px solid #E6E6E6;
   background: #FFFFFF;
   border-radius: 6px;
@@ -141,12 +154,33 @@ nav {
 }
 
 .region {
-  max-width: 392px;
+  max-width: 20vw;
   border: 1px solid#E6E6E6;
+}
+
+.img-container {
+  width: 72px;
+  height: 72px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 800px) {
+  .payment-item, .region {
+    max-width: 90vw;
+  }
+  nav {
+    left: 0vw;
+  }
 }
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
@@ -156,6 +190,7 @@ export default {
       activeTabIndex: 0, // Track the active tab index
       paymentType: "",
       paymentData: [],
+      isLoading: false,
     };
   },
   components: {
@@ -173,7 +208,7 @@ export default {
     adjustPaddingTop() {
       const layout = this.$refs.layoutRef;
       if (layout && layout.$refs.headerRef) {
-        const headerHeight = layout.$refs.headerRef.$el.offsetHeight;
+        const headerHeight = 98;
         const paymentSection = this.$el.querySelector(".payment");
         paymentSection.style.paddingTop = `${headerHeight}px`;
       }
@@ -186,107 +221,36 @@ export default {
       // Fetch data for the first tab by default
       this.fetchPaymentData(this.paymentTypes[0].type, 0);
     },
-    fetchPaymentData(type, index) {
+    async fetchPaymentData(type, index) {
       this.activeTabIndex = index; // Set the active tab index
       if (type == "停車場（路外）") {
         this.paymentType = "停車場（路外）";
-        this.paymentData = [
-          {
-            name: "應安 168 停車",
-            preview_url: "/payment/payment01.svg",
-            link_url: "",
-          },
-          {
-            name: "力揚停車",
-            preview_url: "/payment/payment02.svg",
-            link_url: "",
-          },
-          {
-            name: "台灣聯通",
-            preview_url: "/payment/payment03.svg",
-            link_url: "",
-          },
-          {
-            name: "富山停車",
-            preview_url: "/payment/payment04.svg",
-            link_url: "",
-          },
-          {
-            name: "TPS 便利停車場",
-            preview_url: "/payment/payment05.svg",
-            link_url: "",
-          },
-          {
-            name: "山發物業",
-            preview_url: "/payment/payment06.svg",
-            link_url: "",
-          },
-          {
-            name: "國雲停車",
-            preview_url: "/payment/payment07.svg",
-            link_url: "",
-          },
-          {
-            name: "JSP 正好停",
-            preview_url: "/payment/payment08.svg",
-            link_url: "",
-          },
-          {
-            name: "uTagGo",
-            preview_url: "/payment/payment10.svg",
-            link_url: "",
-          },
-        ];
+        this.isLoading = true;
+        const getParkingPaymentApi = `${API}/payment/parking`;
+        try {
+          const response = await this.axios.get(getParkingPaymentApi);
+          if (response.data.status) {
+            this.paymentData = response.data.payments;
+          }
+        } catch (error) {
+          console.error("Failed", error);
+        } finally {
+          this.isLoading = false;
+        }
       } else if (type == "縣市政府路邊") {
         this.paymentType = "縣市政府路邊";
-        this.paymentData = [
-          {
-            area: "北部區域",
-            regions: [
-              { color: "navy03", region: "台北市" },
-              { color: "yellow05", region: "新北市" },
-              { color: "green02", region: "基隆市" },
-              { color: "red01", region: "桃園市" },
-              { color: "navy03", region: "新竹縣" },
-              { color: "yellow05", region: "新竹市" },
-              { color: "green02", region: "宜蘭縣" },
-            ],
-          },
-          {
-            area: "中部區域",
-            regions: [
-              { color: "red01", region: "台中市" },
-              { color: "navy03", region: "苗栗縣" },
-              { color: "yellow05", region: "彰化縣" },
-              { color: "green02", region: "雲林縣" },
-              { color: "red01", region: "南投縣" },
-            ],
-          },
-          {
-            area: "南部區域",
-            regions: [
-              { color: "navy03", region: "高雄市" },
-              { color: "yellow05", region: "台南市" },
-              { color: "green02", region: "嘉義市" },
-              { color: "red01", region: "屏東縣" },
-              { color: "navy03", region: "澎湖縣" },
-            ],
-          },
-          {
-            area: "東部區域",
-            regions: [
-              { color: "yellow05", region: "花蓮縣" },
-              { color: "green02", region: "台東縣" },
-            ],
-          },
-          {
-            area: "外島區域",
-            regions: [
-              { color: "red01", region: "金門縣" },
-              { color: "navy03", region: "連江縣" },
-            ],
-          },
-        ];
+        this.isLoading = true;
+        const getParkingPaymentApi = `${API}/payment/area`;
+        try {
+          const response = await this.axios.get(getParkingPaymentApi);
+          if (response.data.status) {
+            this.paymentData = response.data.parking_payments;
+          }
+        } catch (error) {
+          console.error("Failed", error);
+        } finally {
+          this.isLoading = false;
+        }
       }
     },
   },
