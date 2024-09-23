@@ -31,7 +31,10 @@
         </nav>
       </div>
       <div class="tab-content container mt-4 mt-md-8" id="nav-tabContent">
-        <div
+        <div v-if="isLoading">
+          載入中...
+        </div>
+        <div v-else
           v-for="(item, index) in vendorTypes"
           :key="index"
           class="tab-pane fade"
@@ -157,6 +160,7 @@ import TheLayout from "@/components/TheLayout.vue";
 export default {
   data() {
     return {
+      isLoading: false,
       vendorTypes: null,
       activeTabIndex: 0, // Track the active tab index
       vendorType: "",
@@ -197,6 +201,7 @@ export default {
       }
     },
     async fetchVendorData(type, index) {
+      this.isLoading = true;
       this.activeTabIndex = index; // Set the active tab index
       const fetchVendorDataApi = `${API}/vendor/list?type=${type}`;
       try {
@@ -208,6 +213,8 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false
       }
     },
   },
