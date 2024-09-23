@@ -3,11 +3,10 @@
     <h2 class="text-navy04 fs-xl6 fw-bold text-center mb-10">
       {{ $t("pages.index.industry promotion") }}
     </h2>
-    <h2 v-if="industryPromotions.length < 1" class="text-center mb-20">
-      目前尚無資料
-    </h2>
+    <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
     <!-- Desktop Carousel (md and above) -->
-    <div v-if="industryPromotions.length >= 1"
+    <div
+      v-else
       id="carouselDesktop"
       class="carousel slide d-none d-md-block"
       data-bs-ride="carousel"
@@ -31,7 +30,11 @@
                 class="d-block text-center"
               >
                 <div class="object-fit-container mx-auto">
-                  <img :src="item.preview_url" alt="industryPromotions" />
+                  <img
+                    :src="item.preview_url"
+                    alt="industryPromotions"
+                    @error="handleImageError($event)"
+                  />
                 </div>
                 <p class="text-navy04 fw-bold mt-5">{{ item.title }}</p>
               </a>
@@ -54,13 +57,14 @@
         data-bs-target="#carouselDesktop"
         data-bs-slide="next"
       >
-        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage">
+        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage" />
         <span class="visually-hidden">Next</span>
       </button>
     </div>
 
     <!-- Mobile Carousel (below md) -->
-    <div v-if="industryPromotions.length >= 1"
+    <div
+      v-if="industryPromotions.length != 0"
       id="carouselMobile"
       class="carousel slide d-block d-md-none"
       data-bs-ride="carousel"
@@ -80,7 +84,11 @@
                 class="d-block text-center"
               >
                 <div class="object-fit-container mx-auto">
-                  <img :src="item[0].preview_url" alt="industryPromotions" />
+                  <img
+                    :src="item[0].preview_url"
+                    alt="industryPromotions"
+                    @error="handleImageError($event)"
+                  />
                 </div>
                 <p class="text-navy04 fw-bold mt-5">{{ item[0].title }}</p>
               </a>
@@ -223,10 +231,12 @@ export default {
   data() {
     return {
       industryPromotions: [],
+      isLoading: false,
     };
   },
   methods: {
     async getIndustryPromotions() {
+      this.isLoading = true;
       const getIndustryPromotionsApi = `${API}/offer`;
       try {
         const response = await this.axios.get(getIndustryPromotionsApi);
@@ -235,6 +245,8 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     chunkArray(array, chunkSize) {
@@ -243,6 +255,9 @@ export default {
         chunks.push(array.slice(i, i + chunkSize));
       }
       return chunks;
+    },
+    handleImageError(event) {
+      event.target.src = "/default.svg"; // 預設圖片的路徑
     },
   },
   computed: {
