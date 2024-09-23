@@ -7,16 +7,19 @@
         </p>
       </div>
       <div class="container mt-4 mt-md-16">
+        <div v-if="isLoading">載入中...</div>
         <!-- Masonry grid container -->
-        <div class="masonry-grid">
+        <div v-else class="masonry-grid">
           <!-- Loop through activities and render each image -->
           <div
             v-for="(activity, index) in activities"
             :key="index"
             class="masonry-item"
           >
-            <img :src="activity.imgUrl" :alt="activity.name" />
-            <p class="mt-2">{{ activity.name }}</p>
+          <a :href="activity.link_url" target="_blank" rel="noopener noreferrer">
+            <img :src="activity.preview_url" :alt="activity.name" />
+            <p class="text-gray13 fs-xl mt-2">{{ activity.title }}</p>
+          </a>
           </div>
         </div>
       </div>
@@ -51,11 +54,14 @@
 </style>
 
 <script>
+import { API } from "@/api.js";
+
 import TheLayout from "@/components/TheLayout.vue";
 
 export default {
   data() {
     return {
+      isLoading: false,
       activities: [],
     };
   },
@@ -80,29 +86,19 @@ export default {
         memberSection.style.paddingTop = `${headerHeight}px`;
       }
     },
-    getActivities() {
-      this.activities = [
-        {
-          name: "第21屆第1次理監事暨會員聯誼",
-          imgUrl: "/index/activities/img01.jpg",
-        },
-        {
-          name: "第21屆第1次理監事暨會員聯誼",
-          imgUrl: "/index/activities/img02.jpg",
-        },
-        {
-          name: "第21屆第1次理監事暨會員聯誼",
-          imgUrl: "/index/activities/img03.jpg",
-        },
-        {
-          name: "第21屆第1次理監事暨會員聯誼",
-          imgUrl: "/index/activities/img04.jpg",
-        },
-        {
-          name: "第21屆第1次理監事暨會員聯誼",
-          imgUrl: "/index/activities/img05.jpg",
-        },
-      ];
+    async getActivities() {
+      this.isLoading = true;
+      const getEventsApi = `${API}/event`;
+      try {
+        const response = await this.axios.get(getEventsApi);
+        if (response.data.status) {
+          this.activities = response.data.events;
+        }
+      } catch (error) {
+        console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };
