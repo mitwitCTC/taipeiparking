@@ -11,7 +11,7 @@
       <vue-marquee-slider
         id="marquee-slider"
         :paused="isPaused"
-        :speed="10000"
+        :speed="15000"
         :space="16"
         :width="392"
       >
