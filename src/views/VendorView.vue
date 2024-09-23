@@ -190,7 +190,7 @@ export default {
         const response = await this.axios.get(getVendorsApi);
         if (response.data.status == true) {
           this.vendorTypes = response.data.vendorTypes;
-          this.fetchVendorData(this.vendorTypes[0], 0);
+          this.fetchVendorData(this.vendorTypes[0].type, 0);
         }
       } catch (error) {
         console.error("Failed", error);
