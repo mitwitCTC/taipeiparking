@@ -35,9 +35,7 @@
         role="tabpanel"
         aria-labelledby="nav-member-tab"
       >
-        <h2 v-if="members.length < 1" class="text-center mb-20">
-          目前尚無資料
-        </h2>
+        <h2 v-if="isLoading" class="text-center mb-20">載入中...</h2>
         <ul v-else
           class="row row-cols-lg-3 row-cols-md-3 row-cols-2 gap-3 gap-md-6 justify-content-center"
         >
@@ -59,10 +57,10 @@
         role="tabpanel"
         aria-labelledby="nav-vendor-tab"
       >
-        <h2 v-if="vendorTypes.length < 1" class="text-center mb-20">
-          目前尚無資料
+        <h2 v-if="isLoading" class="text-center mb-20">
+          載入中...
         </h2>
-        <ul
+        <ul v-else
           class="row row-cols-lg-3 row-cols-md-3 row-cols-2 gap-3 gap-md-6 justify-content-center"
         >
           <li v-for="(item, index) in vendorTypes" :key="index" class="vendor-container bg-yellow01 d-flex justify-content-center align-items-center">
@@ -137,6 +135,7 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
+      isLoading: false,
       members: [],
       vendorTypes: []
     };
@@ -164,6 +163,7 @@ export default {
       this.windowWidth = window.innerWidth;
     },
     async getMembers() {
+      this.isLoading = true;
       const getMembersApi = `${API}/member`;
       try {
         const response = await this.axios.get(getMembersApi);
@@ -172,9 +172,12 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     async getVendorTypes() {
+      this.isLoading = true;
       const getVendorsApi = `${API}/vendor`;
       try {
         const response = await this.axios.get(getVendorsApi);
@@ -183,6 +186,8 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
