@@ -98,34 +98,34 @@
 }
 
 .member-container {
-  width: 392px;
-  height: 240px;
-  padding: 60px 98px;
+  width: clamp(166px, 8vw + 66.2px, 392px);
+  height: clamp(138px, 6.58vw + 53.4px, 240px);
+  padding: clamp(40px, 1.55vw + 24.1px, 60px) clamp(32px, 2.06vw + 24.3px, 98px);
+  box-shadow: 0px 0px 20px 0px #0000001a;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 392/240;
   border: 1px solid #f7f7f7;
   box-shadow: 0px 0px 20px 0px #0000001a;
 }
-.member-container img {
+img {
   max-width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .vendor-container {
-  width: 392px;
-  height: 240px;
+  width: 20vw;
+  aspect-ratio: 392/240;
   border-radius: 12px;
 }
 
 @media (max-width: 992px) {
-  .member-container {
-    width: 166px;
-    height: 138px;
-    padding: 36px 40px;
-    border: 1px solid #f7f7f7;
-    box-shadow: 0px 0px 20px 0px #0000001a;
-  }
   .vendor-container {
-    width: 166px;
-    height: 138px;
+    width: 44vw;
+    aspect-ratio: 166/138;
   }
 }
 </style>
