@@ -4,7 +4,7 @@
       <h2 class="text-navy04 fs-xl6 fw-bold text-center mb-10">
         {{ $t("pages.index.announcements") }}
       </h2>
-      <h2 v-if="announcements.length < 1" class="text-center">目前尚無資料</h2>
+      <h2 v-if="isLoading" class="text-center">載入中...</h2>
       <ul>
         <li
           v-for="(item, index) in announcements"
@@ -57,10 +57,12 @@ export default {
   data() {
     return {
       announcements: [],
+      isLoading: false,
     };
   },
   methods: {
     async getAnnouncements() {
+      this.isLoading = true;
       const getAnnouncementsApi = `${API}/report`
       try {
         const response = await this.axios.get(getAnnouncementsApi)
@@ -69,6 +71,8 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     getTypeBadge(type) {
