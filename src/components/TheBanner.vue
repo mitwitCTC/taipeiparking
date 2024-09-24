@@ -44,6 +44,7 @@
 @media (max-width: 560px) {
   .banner {
     background-size: 100% 480px;
+    padding-top: 104px;
   }
   .bannerText {
     padding-top: 104px;
