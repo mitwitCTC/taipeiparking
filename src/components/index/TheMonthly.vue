@@ -20,7 +20,7 @@
           </div>
         </section>
         <section class="col-12 col-md-8 col-xl-8 mt-8 mt-xl-0">
-          <ul class="row gap-2 d-flex justify-content-center">
+          <ul class="row gap-4 d-flex justify-content-center">
             <li
               class="monthly-space bg-white px-5 justify-content-between mb-2"
               v-for="(item, index) in displayedMonthlySpaces"
@@ -49,15 +49,16 @@
 
 .monthly-space {
   box-shadow: 0px 0px 10px 0px #0000001a;
-  width: 25vw;
+  width: 20vw;
   aspect-ratio: 392/88;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 @media (max-width: 768px) {
   .monthly-space {
-    width: 80vw;
+    width: 90vw;
   }
 }
 </style>
@@ -125,7 +126,7 @@ export default {
   computed: {
     // Computed property to determine displayed monthly spaces number based on window width
     displayedMonthlySpaces() {
-      return this.windowWidth >= 768
+      return this.windowWidth >= 769
         ? this.monthlySpaces // Show all 8 items if window width is equal or greater than 768px
         : this.monthlySpaces.slice(0, 4); // Show only first 4 items if window width is smaller than 768px
     },
