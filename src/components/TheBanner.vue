@@ -8,9 +8,11 @@
         <h2 :class="[h2fs, h2margin]" class="text-white">
           提供停車同業與產業連結，打造數位轉型停車服務
         </h2>
-        <button class="btn btn-yellow03 text-navy05 fw-bold btn-join">
-          加入公會
-        </button>
+        <router-link to="/joinUs">
+          <button class="btn btn-yellow03 text-navy05 fw-bold btn-join">
+            加入公會
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
