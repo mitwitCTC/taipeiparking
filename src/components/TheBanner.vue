@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="container">
       <div class="bannerText text-center">
-        <h1 :class="h1fs" class="text-yellow04 fw-bold">
+        <h1 :class="h1fs" class="text-yellow04 fw-bold text-nowrap">
           台北市停車商業同業公會
         </h1>
         <h2 :class="[h2fs, h2margin]" class="text-white">
