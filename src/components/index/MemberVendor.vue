@@ -41,7 +41,7 @@
         >
           <li v-for="(item, index) in members" class="member-container" :key="index">
             <a :href='item.link_url' target="_blank" rel="noopener noreferrer">
-              <img :src='item.preview_url' :alt="item.name" @error="handleImageError($event)">
+              <img :src='item.preview_url || defaultImgUrl' :alt="item.name" @error="handleImageError($event)">
             </a>
           </li>
         </ul>
@@ -137,7 +137,8 @@ export default {
       windowWidth: window.innerWidth,
       isLoading: false,
       members: [],
-      vendorTypes: []
+      vendorTypes: [],
+      defaultImgUrl: '/default.svg'
     };
   },
   computed: {

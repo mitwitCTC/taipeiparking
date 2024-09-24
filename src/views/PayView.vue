@@ -54,8 +54,9 @@
                     <div class="d-flex">
                       <div class="img-container me-6">
                         <img
-                          :src="item.memberLogo"
+                          :src="item.memberLogo || defaultImgUrl"
                           alt="payment_logo"
+                          @error="handleImageError($event)"
                         />
                       </div>
                       <p class="text-navy03 fs-xl fw-bold mt-5 me-2">{{ item.memberName }}</p>
@@ -191,6 +192,7 @@ export default {
       paymentType: "",
       paymentData: [],
       isLoading: false,
+      defaultImgUrl: '/default.svg'
     };
   },
   components: {
@@ -252,6 +254,9 @@ export default {
           this.isLoading = false;
         }
       }
+    },
+    handleImageError(event) {
+      event.target.src = "/default.svg"; // 預設圖片的路徑
     },
   },
 };

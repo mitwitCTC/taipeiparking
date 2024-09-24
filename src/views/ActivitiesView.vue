@@ -17,7 +17,7 @@
             class="masonry-item"
           >
           <a :href="activity.link_url" target="_blank" rel="noopener noreferrer">
-            <img :src="activity.preview_url" :alt="activity.name" />
+            <img :src="activity.preview_url || defaultImgUrl" :alt="activity.name" @error="handleImageError($event)"/>
             <p class="text-gray13 fs-xl mt-2">{{ activity.title }}</p>
           </a>
           </div>
@@ -63,6 +63,7 @@ export default {
     return {
       isLoading: false,
       activities: [],
+      defaultImgUrl: '/default.svg'
     };
   },
   components: {
@@ -81,7 +82,7 @@ export default {
       // Access the layout and header refs correctly
       const layout = this.$refs.layoutRef;
       if (layout && layout.$refs.headerRef) {
-        const headerHeight = layout.$refs.headerRef.$el.offsetHeight;
+        const headerHeight = 98;
         const memberSection = this.$el.querySelector(".member");
         memberSection.style.paddingTop = `${headerHeight}px`;
       }
@@ -99,6 +100,9 @@ export default {
       } finally {
         this.isLoading = false;
       }
+    },
+    handleImageError(event) {
+      event.target.src = "/default.svg"; // 預設圖片的路徑
     },
   },
 };

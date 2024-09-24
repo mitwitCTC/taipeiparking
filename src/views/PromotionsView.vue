@@ -16,7 +16,7 @@
           >
             <a :href="item.link_url" target="_blank" class="d-block">
               <div class="object-fit-container">
-                <img :src="item.preview_url" alt="industryPromotions" />
+                <img :src="item.preview_url || defaultImgUrl" alt="industryPromotions" @error="handleImageError($event)" />
               </div>
               <div class="d-flex align-items-center">
                 <p class="text-navy04 fw-bold mt-5 me-1 me-md-2">
@@ -80,6 +80,7 @@ export default {
       promotions: [],
       currentPage: 1,
       itemsPerPage: 10,
+      defaultImgUrl: '/default.svg'
     };
   },
   components: {
@@ -126,6 +127,9 @@ export default {
     },
     handlePageChange(page) {
       this.currentPage = page;
+    },
+    handleImageError(event) {
+      event.target.src = "/default.svg"; // 預設圖片的路徑
     },
   },
 };

@@ -31,7 +31,7 @@
               >
                 <div class="object-fit-container mx-auto">
                   <img
-                    :src="item.preview_url"
+                    :src="item.preview_url || defaultImgUrl"
                     alt="industryPromotions"
                     @error="handleImageError($event)"
                   />
@@ -48,7 +48,7 @@
         data-bs-target="#carouselDesktop"
         data-bs-slide="prev"
       >
-        <img src="/icons/btn_prePage.svg" alt="btn_prePage">
+        <img src="/icons/btn_prePage.svg" alt="btn_prePage" />
         <span class="visually-hidden">Previous</span>
       </button>
       <button
@@ -102,7 +102,7 @@
         data-bs-target="#carouselMobile"
         data-bs-slide="prev"
       >
-        <img src="/icons/btn_prePage.svg" alt="btn_prePage">
+        <img src="/icons/btn_prePage.svg" alt="btn_prePage" />
         <span class="visually-hidden">Previous</span>
       </button>
       <button
@@ -111,7 +111,7 @@
         data-bs-target="#carouselMobile"
         data-bs-slide="next"
       >
-        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage">
+        <img src="/icons/btn_nextPage.svg" alt="btn_nextPage" />
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -232,6 +232,7 @@ export default {
     return {
       industryPromotions: [],
       isLoading: false,
+      defaultImgUrl: '/default.svg'
     };
   },
   methods: {

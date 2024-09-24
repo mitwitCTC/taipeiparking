@@ -19,7 +19,7 @@
         <div class="activity-item" v-for="(item, index) in events" :key="index">
           <a :href="item.link_url" target="_blank">
             <div class="img-container">
-              <img :src="item.preview_url" />
+              <img :src="item.preview_url || defaultImgUrl" @error="handleImageError($event)" />
             </div>
             <p class="text-gray13 fw-bold mt-4">
               {{ item.title }}
@@ -30,7 +30,7 @@
     </div>
     <div class="text-center mt-12">
       <button class="btn btn-lg btn-navy03 fw-bold">
-        <router-link to="activities">查看更多活動花絮</router-link>
+        <router-link to="/activities">查看更多活動花絮</router-link>
       </button>
     </div>
   </section>
@@ -61,6 +61,7 @@ export default {
       isPaused: false,
       isLoading: false,
       events: [],
+      defaultImgUrl: '/default.svg'
     };
   },
   methods: {
@@ -84,6 +85,10 @@ export default {
     resumeMarquee() {
       this.isPaused = false; // 鼠標離開時恢復滾動
     },
+    handleImageError(event) {
+      event.target.src = "/default.svg"; // 預設圖片的路徑
+    },
+    
   },
   mounted() {
     this.getEvents();
