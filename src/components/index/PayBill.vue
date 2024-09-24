@@ -16,12 +16,12 @@
       />
       <ul class="d-flex justify-content-between p-0 pay-list">
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
+          <p class="text-navy03 fw-bold text-start mb-16">
             {{ $t("pages.index.payBill.des1") }}
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+          <p class="text-yellow05 fw-bold text-start">
             <vue-count-to
-              class="text-yellow05 fs-xl8 fw-bold text-start"
+              class="text-yellow05 fw-bold text-start"
               :start-val="0"
               :end-val="90"
               :duration="2000"
@@ -31,12 +31,12 @@
           </p>
         </li>
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
+          <p class="text-navy03 fw-bold text-start mb-16">
             {{ $t("pages.index.payBill.des2") }}
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+          <p class="text-yellow05 fw-bold text-start">
             <vue-count-to
-              class="text-yellow05 fs-xl8 fw-bold text-start"
+              class="text-yellow05 fw-bold text-start"
               :start-val="0"
               :end-val="3000"
               :duration="5000"
@@ -46,12 +46,12 @@
           </p>
         </li>
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fs-xl2 fw-bold text-start mb-16">
+          <p class="text-navy03 fw-bold text-start mb-16">
             {{ $t("pages.index.payBill.des3") }}
           </p>
-          <p class="text-yellow05 fs-xl8 fw-bold text-start">
+          <p class="text-yellow05 fw-bold text-start">
             <vue-count-to
-              class="text-yellow05 fs-xl8 fw-bold text-start"
+              class="text-yellow05 fw-bold text-start"
               :start-val="0"
               :end-val="10"
               :duration="1000"
@@ -85,8 +85,11 @@
 
 .bg-desktop {
   position: absolute;
-  top: 0;
   right: 0;
+  height: 80%;
+  object-fit: contain; /* 確保圖像按比例縮放 */
+  top: 50%;
+  transform: translateY(-50%); /* 垂直置中 */
   z-index: -1;
 }
 
@@ -95,23 +98,35 @@
 }
 
 .pay-list {
+  position: relative; /* 使 bg-desktop 相對於這個元素定位 */
   overflow-x: auto; /* 使 ul 可以水平滑動 */
   white-space: nowrap; /* 防止 ul 在縮放時換行 */
   padding: 0; /* 移除內邊距 */
   margin: 0; /* 移除外邊距 */
-  margin-right: 200px;
 }
 
 .pay-item {
-  display: inline-block; /* 使 li 元素在水平方向上排列 */
-  width: 392px;
-  height: 240px;
-  padding-top: 32px;
-  padding-bottom: 24px;
-  padding-left: 32px;
-  padding-right: 192px;
+  display: flex; /* 使 li 元素在水平方向上排列 */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20vw;
+  aspect-ratio: 392/240;
+  padding: 32px 24px;
   border-radius: 20px;
   margin-right: 16px; /* 保留 li 元素之間的間距 */
+  box-sizing: border-box; /* 確保 padding 不會超過寬度 */
+}
+
+.pay-item p:first-of-type {
+  font-size: clamp(1rem, 1.5vw, 1.5rem); /* des1, des2, des3 的字體大小 */
+  white-space: normal; /* 允許文字換行 */
+  word-wrap: break-word; /* 讓過長的文字進行換行 */
+  flex-grow: 1;
+}
+
+.pay-item p:last-of-type {
+  font-size: clamp(2rem, 4vw, 4.5rem); /* 計數數值的字體大小 */
+  align-self: flex-start;
 }
 
 /* 隱藏 WebKit 瀏覽器中的滾動條 */
@@ -124,12 +139,6 @@
   scrollbar-width: none;
 }
 
-@media (max-width: 1400px) {
-  .pay-list {
-    margin-right: 180px;
-  }
-}
-
 @media (max-width: 800px) {
   .bg-desktop {
     display: none;
@@ -138,8 +147,25 @@
     display: block;
     margin: 0 auto;
   }
-  .pay-list {
-    margin-right: 0;
+
+  .pay-item {
+    width: 50vw;
+    aspect-ratio: 260/160;
+    padding: 16px 12px; /* 進一步縮小 padding */
+  }
+
+  .pay-item p:first-of-type {
+    font-size: clamp(2rem, 1.5vw, 2.5rem); /* des1, des2, des3 的字體大小 */
+  }
+
+  .pay-item p:last-of-type {
+    font-size: clamp(3rem, 4vw, 4.5rem); /* 計數數值的字體大小 */
+  }
+}
+
+@media (max-width: 560px) {
+  .pay-item {
+    width: 69vw;
   }
 }
 </style>
