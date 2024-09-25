@@ -46,9 +46,11 @@
           </li>
         </ul>
         <div class="text-center mt-12">
-          <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
-            <router-link to="/member">{{ $t("pages.index.member&vendor.member_btn") }}</router-link>
-          </button>
+          <router-link to="/member">
+            <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
+              {{ $t("pages.index.member&vendor.member_btn") }}
+            </button>
+          </router-link>
         </div>
       </div>
       <div
@@ -73,11 +75,11 @@
           </li>
         </ul>
         <div class="text-center mt-12">
-          <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
-            <router-link to="/vendor">
+          <router-link to="/vendor">
+            <button class="btn btn-navy03 btn-lg text-xl2 fw-bold">
               {{ $t("pages.index.member&vendor.vendor_btn") }}
-            </router-link>
-          </button>
+            </button>
+          </router-link>
         </div>
       </div>
     </div>

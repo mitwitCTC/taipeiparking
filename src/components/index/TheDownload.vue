@@ -5,11 +5,11 @@
         <p :class="fs" class="text-white fw-bold">
             {{ $t("pages.index.download.title") }}
         </p>
-        <button class="btn btn-yellow03 px-10 py-6 btn-download">
-            <router-link to="/inquiry" class="text-navy03 fw-bold">
-              {{ $t("pages.index.download.btn-text") }}
-            </router-link>
-        </button>
+        <router-link to="/inquiry" class="text-navy03 fw-bold">
+          <button class="btn btn-yellow03 px-10 py-6 btn-download">
+            {{ $t("pages.index.download.btn-text") }}
+          </button>
+        </router-link>
       </div>
     </div>
   </div>

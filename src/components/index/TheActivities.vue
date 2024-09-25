@@ -29,9 +29,11 @@
       </vue-marquee-slider>
     </div>
     <div class="text-center mt-12">
-      <button class="btn btn-lg btn-navy03 fw-bold">
-        <router-link to="/activities">查看更多活動花絮</router-link>
-      </button>
+      <router-link to="/activities">
+        <button class="btn btn-lg btn-navy03 fw-bold">
+          查看更多活動花絮
+        </button>
+      </router-link>
     </div>
   </section>
 </template>
