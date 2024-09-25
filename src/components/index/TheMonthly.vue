@@ -1,64 +1,106 @@
 <template>
   <div class="bg-monthly">
+    <img class="parking-car" src="@/assets/img/car.png" alt="car.png" />
     <div class="container">
       <div class="row">
-        <section class="col-12 col-md-4 col-xl-4">
-          <div
-            class="d-flex flex-column align-items-center align-items-xl-start"
+        <section class="parking-dec col-12 col-md-4">
+          <h2 class="text-navy05 fs-xl6 mb-6 fw-bold">
+            {{ $t("pages.index.monthly.title") }}
+          </h2>
+          <img
+            class="parking-car mobile"
+            src="@/assets/img/car.png"
+            alt="car.png"
+          />
+          <p class="text-navy03 fs-xl mb-12">
+            {{ $t("pages.index.monthly.des") }}
+          </p>
+          <button
+            class="btn btn-navy03 btn-xl"
+            @click="$router.push('/monthly')"
           >
-            <h2 class="text-navy05 fs-xl6 fw-bold">
-              {{ $t("pages.index.monthly.title") }}
-            </h2>
-            <p class="text-navy03 fs-xl mt-6 mb-12">
-              {{ $t("pages.index.monthly.des") }}
-            </p>
-            <button class="btn btn-navy03 btn-xl">
-              <router-link to="/monthly">
-                {{ $t("pages.index.monthly.btn-text") }}
-              </router-link>
-            </button>
-          </div>
+            {{ $t("pages.index.monthly.btn-text") }}
+          </button>
         </section>
-        <section class="col-12 col-md-8 col-xl-8 mt-8 mt-xl-0">
-          <ul class="row gap-4 d-flex justify-content-center">
+
+        <section class="col-12 col-md-8">
+          <ul class="parking-space">
             <li
-              class="monthly-space bg-white px-5 justify-content-between mb-2"
               v-for="(item, index) in displayedMonthlySpaces"
               :key="index"
+              class="monthly-space"
             >
-              <span class="text-gray13 fs-xl fw-bold">{{ item.region }}</span>
-              <span>
-                <span class="text-navy03 fs-xl3 fw-bold">
-                  {{ item.spaces }}
-                </span>
-                <span>個車位</span>
-              </span>
+              <span class="text-gray13 fs-xl fw-bold">{{ item.region }}</span
+              ><span
+                ><strong class="text-navy03 fs-xl3 fw-bold">{{
+                  item.spaces
+                }}</strong>
+                個車位</span
+              >
             </li>
           </ul>
         </section>
-        <div></div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
 .bg-monthly {
+  position: relative;
   background: linear-gradient(180deg, #fff4d6 0%, #fffcf6 100%);
   padding: 120px 0;
 }
 
 .monthly-space {
   box-shadow: 0px 0px 10px 0px #0000001a;
-  width: 20vw;
-  aspect-ratio: 392/88;
+  padding: 30px 20px;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
 }
+
+.parking-space {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.parking-car {
+  height: 330px;
+  position: absolute;
+  top: 180px;
+  left: 0px;
+  z-index: 0;
+  transform: translateX(-50%);
+}
+
+.parking-car.mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .monthly-space {
-    width: 90vw;
+  .parking-car {
+    display: none;
+  }
+
+  .parking-car.mobile {
+    height: 150px;
+    position: relative;
+    top: unset;
+    left: unset;
+    display: block;
+    transform: unset;
+    margin: auto auto 24px;
+  }
+
+  .parking-dec {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .parking-space {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>
