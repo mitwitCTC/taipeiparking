@@ -100,22 +100,28 @@
 }
 
 .member-container {
-  width: clamp(166px, 8vw + 66.2px, 392px);
-  height: clamp(138px, 6.58vw + 53.4px, 240px);
+  width: clamp(166px, 20vw, 392px);
+  height: calc((240 / 392) * 100%);
+  max-width: 392px;
+  max-height: 240px;
+  min-width: 166px;
+  min-height: 138px;
   padding: clamp(40px, 1.55vw + 24.1px, 60px) clamp(32px, 2.06vw + 24.3px, 98px);
-  box-shadow: 0px 0px 20px 0px #0000001a;
-  border-radius: 12px;
+  aspect-ratio: 392/240;
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 392/240;
   border: 1px solid #f7f7f7;
   box-shadow: 0px 0px 20px 0px #0000001a;
+  border-radius: 12px;
 }
-img {
-  max-width: 100%;
-  height: 100%;
+
+.member-container img {
+  width: 80%;
+  height: 50%;
   object-fit: contain;
+  display: block;
+  margin: auto;
 }
 
 .vendor-container {
