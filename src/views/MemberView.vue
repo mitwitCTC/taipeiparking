@@ -24,7 +24,7 @@
                     @error="handleImageError"
                   />
                 </div>
-                <p class="text-navy03 text-start fw-bold mt-2 mt-md-4">
+                <p class="member-name text-navy03 text-start fw-bold mt-2 mt-md-4">
                   {{ member.name }}
                 </p>
               </a>
@@ -58,11 +58,17 @@
   object-fit: contain;
 }
 
+.member-name {
+  width: clamp(166px, 7.85vw + 66.2px, 288px);
+  min-height: 3em;
+}
+
 @media (max-width: 375px) {
   .img-container {
     width: 166px;
     height: 138px;
     padding: 36px 40px;
+    min-height: 138px;
   }
 }
 
@@ -71,6 +77,7 @@
     width: 288px;
     height: 240px;
     padding: 60px 72px;
+    min-height: 240px;
   }
 }
 </style>
