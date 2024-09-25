@@ -121,7 +121,7 @@
                   >
                     <a :href="item.url" target="_blank" class="link-container">
                       <span
-                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                        class="text-nowrap type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
                       >
                         {{ item.type }}
                       </span>
@@ -159,7 +159,7 @@
                   >
                     <a :href="item.url" target="_blank" class="link-container">
                       <span
-                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                        class="text-nowrap type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
                       >
                         {{ item.type }}
                       </span>
@@ -197,7 +197,7 @@
                   >
                     <a :href="item.url" target="_blank" class="link-container">
                       <span
-                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                        class="text-nowrap type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
                       >
                         {{ item.type }}
                       </span>
@@ -235,7 +235,7 @@
                   >
                     <a :href="item.url" target="_blank" class="link-container">
                       <span
-                        class="type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
+                        class="text-nowrap type-badge text-white bg-navy03 fs-sm fw-bold py-2 px-4 me-6"
                       >
                         {{ item.type }}
                       </span>
