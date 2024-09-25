@@ -28,7 +28,7 @@
             <li
               v-for="(item, index) in displayedMonthlySpaces"
               :key="index"
-              class="monthly-space"
+              class="monthly-space d-flex flex-md-column flex-xl-row"
             >
               <span class="text-gray13 fs-xl fw-bold">{{ item.region }}</span
               ><span
