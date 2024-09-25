@@ -12,7 +12,7 @@
       <vue-marquee-slider
         id="marquee-slider"
         :paused="isPaused"
-        :speed="15000"
+        :speed="30000"
         :space="16"
         :width="392"
       >
@@ -40,7 +40,7 @@
 <style scoped>
 .img-container {
   width: 392px;
-  height: 392px;
+  aspect-ratio: 392/392;
 }
 .img-container img {
   max-width: 100%;
