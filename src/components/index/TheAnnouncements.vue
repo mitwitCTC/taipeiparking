@@ -68,6 +68,9 @@ export default {
         const response = await this.axios.get(getAnnouncementsApi)
         if (response.data.status) {
           this.announcements = response.data.reports
+          if (this.announcements.length > 5) {
+            this.announcements = this.announcements.slice(0, 5)
+          }
         }
       } catch (error) {
         console.error("Failed", error);
