@@ -15,19 +15,19 @@
               <div class="d-block d-md-none">
                 <select
                   class="form-select nav-dropdown"
-                  @change="handleTabChange, getInquiryData(value)"
+                  @change="handleTabChange, getInquiryData($event.target.value)"
                   :style="getDropdownStyle()"
                 >
-                  <option value="download">
+                  <option value="資料下載">
                     {{ $t("pages.download.tabs.download") }}
                   </option>
-                  <option value="parkingLotRegulations">
+                  <option value="停車場法規">
                     {{ $t("pages.download.tabs.parkingLotRegulations") }}
                   </option>
-                  <option value="industryRegulations">
+                  <option value="產業法規">
                     {{ $t("pages.download.tabs.industryRegulations") }}
                   </option>
-                  <option value="register">
+                  <option value="登記相關作業">
                     {{ $t("pages.download.tabs.register") }}
                   </option>
                 </select>
@@ -76,7 +76,7 @@
                   role="tab"
                   aria-controls="v-pills-industryRegulations"
                   aria-selected="false"
-                  @click=" activateTab('industryRegulations',getInquiryData('產業法規'))"
+                  @click="activateTab('industryRegulations', getInquiryData('產業法規'))"
                 >
                   <img src="/icons/inquiry3.svg" alt="icon" />
                   {{ $t("pages.download.tabs.industryRegulations") }}
@@ -130,7 +130,7 @@
                       </span>
                       <img
                         class="inquiry-icon"
-                        src="/icons/download.svg"
+                        :src="item.icon"
                         alt="download"
                       />
                     </a>
@@ -168,7 +168,7 @@
                       </span>
                       <img
                         class="inquiry-icon"
-                        src="/icons/link.svg"
+                        :src="item.icon"
                         alt="download"
                       />
                     </a>
@@ -206,7 +206,7 @@
                       </span>
                       <img
                         class="inquiry-icon"
-                        src="/icons/link.svg"
+                        :src="item.icon"
                         alt="download"
                       />
                     </a>
@@ -244,7 +244,7 @@
                       </span>
                       <img
                         class="inquiry-icon"
-                        src="/icons/download.svg"
+                        :src="item.icon"
                         alt="download"
                       />
                     </a>
@@ -420,9 +420,16 @@ export default {
       const getInquiryDataApi = `${API}/download?type=${type}`;
       this.isLoading = true;
       try {
-        const response = await this.axios.get(getInquiryDataApi);        
+        const response = await this.axios.get(getInquiryDataApi);
         if (response.data.status == true) {
           this.inquiryData = response.data.files;
+          this.inquiryData = response.data.files.map((item) => {
+            if (type === "資料下載" || type === "登記相關作業") {
+              return { ...item, icon: "/icons/download.svg" };
+            } else {
+              return { ...item, icon: "/icons/link.svg" };
+            }
+          });
         } else {
           this.inquiryData = []; // 若 API 回傳狀態為 false，清空 inquiryData
         }
