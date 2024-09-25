@@ -30,10 +30,10 @@ const router = createRouter({
       meta: { title: zh.components.header.home || "Home" },
     },
     {
-      path: "/intro",
-      name: "intro",
+      path: "/about",
+      name: "about",
       component: IntroView,
-      meta: { title: zh.components.header.intro || "intro" },
+      meta: { title: zh.components.header.intro || "about" },
     },
     {
       path: "/announcements",
@@ -108,10 +108,10 @@ const router = createRouter({
       meta: { title: zh.pages.activities.title || "activities" },
     },
     {
-      path: "/payment",
-      name: "payment",
+      path: "/pay",
+      name: "pay",
       component: PayView,
-      meta: { title: zh.pages.payment.title || "payment" },
+      meta: { title: zh.pages.payment.title || "pay" },
     },
     {
       path: "/login",

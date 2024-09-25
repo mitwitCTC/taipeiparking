@@ -6,7 +6,7 @@
       </p>
       <ul class="d-flex">
         <li>
-          <router-link class="text-navy03 me-6" to="intro">{{
+          <router-link class="text-navy03 me-6" to="about">{{
             $t("components.footer.intro")
           }}</router-link>
         </li>
