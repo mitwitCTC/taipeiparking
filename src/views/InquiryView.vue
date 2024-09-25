@@ -206,7 +206,7 @@
                       </span>
                       <img
                         class="inquiry-icon"
-                        src="/icons/download.svg"
+                        src="/icons/link.svg"
                         alt="download"
                       />
                     </a>
