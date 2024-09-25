@@ -108,7 +108,7 @@ export default {
       }
     },
     async getMembers() {
-      const getMembersApi = `${API}/member`
+      const getMembersApi = `${API}/member?show=all`
       try {
         const response = await this.axios.get(getMembersApi);
         if (response.data.status == true) {
