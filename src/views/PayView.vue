@@ -59,7 +59,7 @@
                           @error="handleImageError($event)"
                         />
                       </div>
-                      <p class="text-navy03 fs-xl fw-bold mt-5 me-2">{{ item.memberName }}</p>
+                      <p class="text-navy03 fs-xl fw-bold mt-5 me-2">{{ item.title }}</p>
                     </div>
                       <i class="bi bi-box-arrow-up-right text-navy02"></i>
                     </div>
