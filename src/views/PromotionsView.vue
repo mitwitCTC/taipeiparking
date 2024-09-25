@@ -6,8 +6,8 @@
           {{ $t("pages.promotion.title") }}
         </p>
       </div>
-      <h2 v-if="promotions.length < 1" class="text-center">目前尚無資料</h2>
-      <div v-if="promotions.length > 1" class="container d-flex mt-8 mt-md-10">
+      <h2 v-if="isLoading" class="text-center">載入中...</h2>
+      <div v-else class="container d-flex mt-8 mt-md-10">
         <ul class="row justify-content-between gap-1">
           <li
             v-for="(item, i) in paginatedPromotions"
@@ -80,7 +80,8 @@ export default {
       promotions: [],
       currentPage: 1,
       itemsPerPage: 10,
-      defaultImgUrl: '/default.svg'
+      defaultImgUrl: '/default.svg',
+      isLoading: false,
     };
   },
   components: {
@@ -115,6 +116,7 @@ export default {
       }
     },
     async getPromotions() {
+      this.isLoading = true;
       const getPromotionsApi = `${API}/offer`
       try {
         const response = await this.axios.get(getPromotionsApi)
@@ -123,6 +125,8 @@ export default {
         }
       } catch (error) {
         console.error("Failed", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     handlePageChange(page) {
