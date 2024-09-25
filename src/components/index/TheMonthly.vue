@@ -67,6 +67,11 @@
   gap: 20px;
 }
 
+.parking-dec {
+  position: relative;
+  z-index: 1;
+}
+
 .parking-car {
   height: 330px;
   position: absolute;
@@ -98,6 +103,7 @@
   .parking-dec {
     margin-bottom: 32px;
     text-align: center;
+    z-index: 1;
   }
   .parking-space {
     grid-template-columns: repeat(1, 1fr);
