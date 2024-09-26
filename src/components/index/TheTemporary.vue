@@ -1,9 +1,11 @@
 <template>
   <section id="temporary">
     <div class="temporay-bg-container text-center align-content-center">
-      <button class="btn btn-navy03 btn-go-temporary text-xl fw-bold">
-        {{ $t("pages.index.temporary.btn-text") }}
-      </button>
+      <router-link to="/temporary">
+        <button class="btn btn-navy03 btn-go-temporary text-xl fw-bold">
+          {{ $t("pages.index.temporary.btn-text") }}
+        </button>
+      </router-link>
       <!-- <img src="/index/temporary.png" class="temporay-bg" alt="temporay-bg" /> -->
     </div>
   </section>

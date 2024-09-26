@@ -19,6 +19,7 @@ import SignupView from "@/views/SignupView.vue";
 import SignupSuccessView from "@/views/SignupSuccessView.vue";
 import ContactSuccessView from "@/views/ContactSuccessView.vue";
 import MonthlyView from "@/views/MonthlyView.vue";
+import TemporaryView from "@/views/TemporaryView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -137,7 +138,17 @@ const router = createRouter({
       component: MonthlyView,
       meta: { title: zh.pages.monthly.title || "monthly" },
     },
+    {
+      path: "/temporary",
+      name: "temporary",
+      component: TemporaryView,
+      meta: { title: zh.pages.temporary.title || "temporary" },
+    },
   ],
 });
+
+router.afterEach(() => {
+  window.scrollTo(0, 0)
+})
 
 export default router;
