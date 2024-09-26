@@ -14,7 +14,7 @@
         :paused="isPaused"
         :speed="30000"
         :space="16"
-        :width="392"
+        :width="calculatedWidth"
       >
         <div class="activity-item" v-for="(item, index) in events" :key="index">
           <a :href="item.link_url" target="_blank">
@@ -38,8 +38,11 @@
   </section>
 </template>
 <style scoped>
+.activity-item {
+  width: 25vw;
+}
 .img-container {
-  width: 392px;
+  width: 100%;
   aspect-ratio: 392/392;
 }
 .img-container img {
@@ -47,6 +50,12 @@
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
+}
+
+@media (max-width: 800px) {
+  .activity-item {
+    width: 33vw;
+  }
 }
 </style>
 <script>
@@ -65,6 +74,18 @@ export default {
       events: [],
       defaultImgUrl: '/default.svg'
     };
+  },
+  computed: {
+    calculatedWidth() {
+      const width = window.innerWidth;
+      if (width <= 800) {
+        return width * 0.33;
+      } else if (width <= 1200) {
+        return width * 0.25;
+      } else {
+        return width * 0.20;
+      }
+    },
   },
   methods: {
     async getEvents() {
