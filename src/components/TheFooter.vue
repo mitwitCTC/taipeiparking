@@ -1,10 +1,10 @@
 <template>
   <div class="footer bg-yellow01 py-13 px-18">
     <div class="container d-flex">
-      <p class="text-navy04 fw-bolder fs-lg me-20">
+      <p class="text-nowrap text-navy04 fw-bolder fs-lg me-20">
         台北市停車場<br />商業同業公會
       </p>
-      <ul class="d-flex">
+      <ul class="d-flex text-nowrap">
         <li>
           <router-link class="text-navy03 me-6" to="about">{{
             $t("components.footer.intro")
@@ -31,7 +31,7 @@
           }}</router-link>
         </li>
       </ul>
-      <p class="text-navy03 fs-sm ms-xl-auto text-nowrap" style="">Copyright &copy; {{ year }} TaipeiParking.com</p>
+      <p class="text-navy03 fs-sm ms-xl-auto text-nowrap">Copyright &copy; {{ year }} TaipeiParking.com</p>
     </div>
   </div>
 </template>
