@@ -41,7 +41,8 @@
             :key="index"
           >
             <a
-              v-if="item.attach_type == 'text/plain'"
+              target="_blank"
+              v-if="!item.attach_pre_url"
               class="text-gray15 fs-xl2"
               :href="item.attach_url"
               >{{ item.attach_name }}
