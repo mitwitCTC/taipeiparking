@@ -90,13 +90,19 @@
             第21屆
           </div>
           <ul class="current-boards-list bg-blue01 p-6 mt-4 text-navy03">
-            <li>
+            <li v-for="(item, index) in current_boards_list" :key="index">
               <p class="row">
-                <span class="fw-bold col-3 col-md-2">理事長</span>
-                <span class="col-6">周理事長 明德</span>
+                <span class="fw-bold col-3 col-md-2">{{ item.title }}</span>
+                <span class="col-6">
+                  <ul>
+                    <li v-for="(i, index) in item.name" :key="index">
+                      {{ i }}
+                    </li>
+                  </ul>
+                </span>
               </p>
             </li>
-            <li>
+            <!-- <li>
               <p class="row">
                 <span class="fw-bold col-3 col-md-2">常務監事</span>
                 <span class="col-6">
@@ -160,7 +166,7 @@
                   </ul>
                 </span>
               </p>
-            </li>
+            </li> -->
           </ul>
         </section>
       </div>
@@ -252,6 +258,7 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
+      current_boards_list: []
     };
   },
   components: {
@@ -272,10 +279,66 @@ export default {
   beforeUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   },
+  mounted() {
+    this.fetchCurrentBoardsList();
+  },
   methods: {
     updateWindowWidth() {
       this.windowWidth = window.innerWidth;
     },
+    fetchCurrentBoardsList() {
+      this.current_boards_list = [
+        {
+          title: '理事長',
+          name: ['周理事長 明德']
+        },
+        {
+          title: '常務理事',
+          name: [
+            '賴常務理事 柏勳',
+            '范常務理事 昌明'
+          ]
+        },
+        {
+          title: '理事',
+          name: [
+            '莊理事 景順',
+            '陳理事 君瑋',
+            '連理事 維全',
+            '黃理事 庸孜',
+            '古理事 昌灝',
+            '楊理事 俊傑',
+            '蔡理事 漢威',
+            '王理事 宥勻',
+          ]
+        },
+        {
+          title: '常務監事',
+          name: [
+            '謝常務監事 永松'
+          ]
+        },
+        {
+          title: '監事',
+          name: [
+            '呂監事 秉儒',
+            '吳監事 思寬'
+          ]
+        },
+        {
+          title: '總幹事',
+          name: [
+            '張總幹事 武龍'
+          ]
+        },
+        {
+          title: '幹事',
+          name: [
+            '楊幹事 為榮'
+          ]
+        }
+      ]
+    }
   },
 };
 </script>
