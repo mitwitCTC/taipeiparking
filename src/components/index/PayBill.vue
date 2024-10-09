@@ -16,49 +16,55 @@
       />
       <ul class="d-flex justify-content-between p-0 pay-list">
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fw-bold text-start mb-16">
-            {{ $t("pages.index.payBill.des1") }}
-          </p>
-          <p class="text-yellow05 fw-bold text-start">
-            <vue-count-to
-              class="text-yellow05 fw-bold text-start"
-              :start-val="0"
-              :end-val="90"
-              :duration="2000"
-              suffix="+"
-            >
-            </vue-count-to>
-          </p>
+          <div class="pay-item-content">
+            <p class="text-navy03 fw-bold text-start mb-1">
+              {{ $t("pages.index.payBill.des1") }}
+            </p>
+            <p class="text-yellow05 fw-bold text-start">
+              <vue-count-to
+                class="text-yellow05 fw-bold text-start"
+                :start-val="0"
+                :end-val="90"
+                :duration="2000"
+                suffix="+"
+              >
+              </vue-count-to>
+            </p>
+          </div>
         </li>
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fw-bold text-start mb-16">
-            {{ $t("pages.index.payBill.des2") }}
-          </p>
-          <p class="text-yellow05 fw-bold text-start">
-            <vue-count-to
-              class="text-yellow05 fw-bold text-start"
-              :start-val="0"
-              :end-val="3000"
-              :duration="5000"
-              suffix="+"
-            >
-            </vue-count-to>
-          </p>
+          <div class="pay-item-content">
+            <p class="text-nowrap text-navy03 fw-bold text-start mb-1">
+              {{ $t("pages.index.payBill.des2") }}
+            </p>
+            <p class="text-yellow05 fw-bold text-start">
+              <vue-count-to
+                class="text-yellow05 fw-bold text-start"
+                :start-val="0"
+                :end-val="3000"
+                :duration="5000"
+                suffix="+"
+              >
+              </vue-count-to>
+            </p>
+          </div>
         </li>
         <li class="pay-item bg-white col-3">
-          <p class="text-navy03 fw-bold text-start mb-16">
-            {{ $t("pages.index.payBill.des3") }}
-          </p>
-          <p class="text-yellow05 fw-bold text-start">
-            <vue-count-to
-              class="text-yellow05 fw-bold text-start"
-              :start-val="0"
-              :end-val="10"
-              :duration="1000"
-              suffix="+"
-            >
-            </vue-count-to>
-          </p>
+          <div class="pay-item-content">
+            <p class="text-navy03 fw-bold text-start mb-1">
+              {{ $t("pages.index.payBill.des3") }}
+            </p>
+            <p class="text-yellow05 fw-bold text-start">
+              <vue-count-to
+                class="text-yellow05 fw-bold text-start"
+                :start-val="0"
+                :end-val="10"
+                :duration="1000"
+                suffix="+"
+              >
+              </vue-count-to>
+            </p>
+          </div>
         </li>
       </ul>
       <div class="goTopay-btn mt-12">
@@ -103,18 +109,32 @@
   white-space: nowrap; /* 防止 ul 在縮放時換行 */
   padding: 0; /* 移除內邊距 */
   margin: 0; /* 移除外邊距 */
+  z-index: 1;
 }
 
 .pay-item {
-  display: flex; /* 使 li 元素在水平方向上排列 */
+  width: clamp(260px, 20vw, 392px); /* 設定寬度為可調整範圍 */
+  aspect-ratio: 392 / 240; /* 保持寬高比例 */
+  border-radius: 20px; /* 圓角邊框 */
+  overflow: hidden; /* 確保內容不會超出邊框 */
+  flex-shrink: 0; /* 防止元素縮小 */
+  margin-right: 16px;
+  display: flex; /* 保持內容的彈性佈局 */
   flex-direction: column;
   justify-content: space-between;
-  width: 20vw;
-  aspect-ratio: 392/240;
-  padding: 32px 24px;
+  background-color: white;
+  box-sizing: border-box; /* 確保 padding 不影響寬度 */
+}
+
+.pay-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1vw;
   border-radius: 20px;
-  margin-right: 16px; /* 保留 li 元素之間的間距 */
-  box-sizing: border-box; /* 確保 padding 不會超過寬度 */
+  aspect-ratio: 392 / 240; /* Maintains aspect ratio (width / height) */
+  background: white;
+  width: 100%; /* Ensures content fills the item container */
 }
 
 .pay-item p:first-of-type {
@@ -152,13 +172,14 @@
     width: 50vw;
     aspect-ratio: 260/160;
     padding: 16px 12px; /* 進一步縮小 padding */
+    z-index: 2;
   }
 
-  .pay-item p:first-of-type {
-    font-size: clamp(2rem, 1.5vw, 2.5rem); /* des1, des2, des3 的字體大小 */
+  .pay-item-content p:first-of-type {
+    font-size: clamp(1.5rem, 1.5vw, 2.5rem); /* des1, des2, des3 的字體大小 */
   }
 
-  .pay-item p:last-of-type {
+  .pay-item-content p:last-of-type {
     font-size: clamp(3rem, 4vw, 4.5rem); /* 計數數值的字體大小 */
   }
 }
