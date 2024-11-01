@@ -30,13 +30,13 @@
 
 @media (min-width: 768px) {
   .temp {
-    background-image: url('/public/temp/1920.png');
+    background-image: url('/temp/1920.png');
   }
 }
 
 @media (max-width: 767px) {
   .temp {
-    background-image: url('/public/temp/375.png');
+    background-image: url('/temp/375.png');
   }
 }
 </style>
