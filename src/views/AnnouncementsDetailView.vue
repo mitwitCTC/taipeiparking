@@ -43,7 +43,7 @@
             <a
               target="_blank"
               v-if="!item.attach_pre_url"
-              class="text-gray15 fs-xl2"
+              class="text-gray15 fs-xl2 custom-underline"
               :href="item.attach_url"
               >{{ item.attach_name }}
             </a>
@@ -65,6 +65,11 @@
 .announcement-detail {
   padding-bottom: clamp(80px, 5.16vw + 33.1px, 160px);
   margin-bottom: clamp(80px, 5.16vw + 33.1px, 160px);
+}
+.custom-underline {
+    text-decoration: underline;
+    text-decoration-color: #133155;
+    text-decoration-thickness: 2px;
 }
 </style>
 
