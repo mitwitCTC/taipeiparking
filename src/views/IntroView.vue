@@ -50,17 +50,11 @@
           <p class="text-navy03 fs-md-xl3 fs-xl2 fw-bold mb-4">歷屆理事長</p>
           <div class="row">
             <div class="col-md-12 col-lg-3 mb-4 mb-lg-0">
-              <ul class="pre-chairman list-unstyled">
+              <ul class="pre-chairman list-unstyled" v-for="item in previous_chairman_list" :key="item.term">
                 <li>
                   <p class="d-flex gap-3 gap-md-8 text-navy03 fs-md mb-2">
-                    <span class="fw-bold">20屆理事長</span>
-                    <span>周理事長 明德</span>
-                  </p>
-                </li>
-                <li>
-                  <p class="d-flex gap-3 gap-md-8 text-navy03 fs-md mb-2">
-                    <span class="fw-bold">21屆理事長</span>
-                    <span>周理事長 明德</span>
+                    <span class="fw-bold">{{item.term}}屆理事長</span>
+                    <span>{{ item.chairman}}</span>
                   </p>
                 </li>
               </ul>
@@ -258,7 +252,8 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
-      current_boards_list: []
+      previous_chairman_list: [],
+      current_boards_list: [],
     };
   },
   components: {
@@ -281,64 +276,66 @@ export default {
   },
   mounted() {
     this.fetchCurrentBoardsList();
+    this.getPrevious_chairman_list();
   },
   methods: {
     updateWindowWidth() {
       this.windowWidth = window.innerWidth;
     },
+    getPrevious_chairman_list() {
+      this.previous_chairman_list = [
+        { term: 13, chairman: "許明和" },
+        { term: 14, chairman: "許明和" },
+        { term: 15, chairman: "江義福" },
+        { term: 16, chairman: "張美麗" },
+        { term: 17, chairman: "張美麗" },
+        { term: 18, chairman: "楊其長" },
+        { term: 19, chairman: "呂學博" },
+        { term: 20, chairman: "周明德" },
+        { term: 21, chairman: "周明德" },
+      ];
+    },
     fetchCurrentBoardsList() {
       this.current_boards_list = [
         {
-          title: '理事長',
-          name: ['周理事長 明德']
+          title: "理事長",
+          name: ["周理事長 明德"],
         },
         {
-          title: '常務理事',
-          name: [
-            '賴常務理事 柏勳',
-            '范常務理事 昌明'
-          ]
+          title: "常務理事",
+          name: ["賴常務理事 柏勳", "范常務理事 昌明"],
         },
         {
-          title: '理事',
+          title: "理事",
           name: [
-            '莊理事 景順',
-            '陳理事 君瑋',
-            '連理事 維全',
-            '黃理事 庸孜',
-            '古理事 昌灝',
-            '楊理事 俊傑',
-            '蔡理事 漢威',
-            '王理事 宥勻',
-          ]
+            "莊理事 景順",
+            "陳理事 君瑋",
+            "連理事 維全",
+            "黃理事 庸孜",
+            "古理事 昌灝",
+            "楊理事 俊傑",
+            "蔡理事 漢威",
+            "王理事 宥勻",
+          ],
         },
         {
-          title: '常務監事',
-          name: [
-            '謝常務監事 永松'
-          ]
+          title: "常務監事",
+          name: ["謝常務監事 永松"],
         },
         {
-          title: '監事',
-          name: [
-            '呂監事 秉儒',
-            '吳監事 思寬'
-          ]
+          title: "監事",
+          name: ["呂監事 秉儒", "吳監事 思寬"],
         },
         {
-          title: '總幹事',
-          name: [
-            '張總幹事 武龍'
-          ]
+          title: "總幹事",
+          name: ["張總幹事 武龍"],
         },
         {
-          title: '幹事',
-          name: [
-            '楊幹事 為榮'
-          ]
-        }
-      ]
-    }
+          title: "幹事",
+          name: ["楊幹事 為榮"],
+        },
+      ];
+    },
   },
 };
 </script>
